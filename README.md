@@ -2,7 +2,6 @@
 Here are some ideas to get you started:
 - 🔭 I’m currently working on leetcode and projects
 - 🌱 I’m currently learning ML , cloud computing
-- 💬 Ask me about anything
 - 📫 How to reach me:[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/atiladeoke/)
 - 😄 Pronouns: He / Him
 ## 🌐 Socials:
