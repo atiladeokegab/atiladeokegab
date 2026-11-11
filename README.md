@@ -24,16 +24,6 @@
 
 ---
 
-## 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=atiladeokegab&theme=tokyonight" height="170" />
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=atiladeokegab&theme=tokyonight" height="170" />
-</p>
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=atiladeokegab&theme=tokyonight&hide_border=true" />
-</p>
-
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=3000&pause=1200&color=A9B1D6&center=true&vCenter=true&width=400&height=35&lines=Thanks%20for%20stopping%20by%21;Let%27s%20build%20something." />
 </p>
