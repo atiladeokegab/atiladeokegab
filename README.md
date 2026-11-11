@@ -14,7 +14,6 @@
 <p align="center">
   <a href="https://atilade.uk"><img src="https://img.shields.io/badge/Website-atilade.uk-000000?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
   <a href="https://www.linkedin.com/in/atiladeoke/"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="https://refinery.guru"><img src="https://img.shields.io/badge/Refinery-refinery.guru-00C853?style=for-the-badge&logo=vercel&logoColor=white" /></a>
 </p>
 
 ---
