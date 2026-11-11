@@ -1,14 +1,5 @@
-<h1 align="center">Atilade Oke</h1>
-
 <p align="center">
-  <a href="https://atilade.uk"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1200&color=00C853&center=true&vCenter=true&width=700&height=50&lines=Analyst%20%40%20ION;%231%20IBM%20Z%20Student%20Ambassador%20Worldwide;8x%20Hackathon%20Winner;Electrical%20Engineering%20%40%20Manchester;I%20build%20the%20future." alt="Analyst @ ION · #1 IBM Z Student Ambassador · 8x Hackathon Winner" /></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Analyst-ION-1E88E5?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/IBM%20Z%20Student%20Ambassador-%231%20Worldwide-054ADA?style=for-the-badge&logo=ibm&logoColor=white" />
-  <img src="https://img.shields.io/badge/Hackathons-8x%20Winner-FF6F00?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/EE-Manchester-660099?style=for-the-badge" />
+  <a href="https://atilade.uk"><img src="./assets/terminal.svg" width="860" alt="Atilade Oke: Analyst @ ION, #1 IBM Z Student Ambassador worldwide, 8x hackathon winner" /></a>
 </p>
 
 <p align="center">
