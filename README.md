@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke in gold traces, with a small crown on the first A" /></a>
+  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke in gold traces: two small robots fix the light switch and straighten the crown on the first A" /></a>
 </p>
 
 <p align="center">
