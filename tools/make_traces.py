@@ -3,7 +3,7 @@
 # Regenerate: python3 tools/make_traces.py assets/traces.svg
 import sys
 from html import escape
-W, H = 1040, 240
+W, H = 1040, 292
 BG, DOT, EDGE, GOLD, HILITE, SPARK, INK, SUB, MUTED, BLUE, LED = (
     '#070a14', '#151c33', '#4a3210', '#dba33f', '#fff1c4', '#fffdf2', '#f4f6ff', '#f0c877', '#56618a', '#63c7ff', '#58f0a0')
 MONO = "'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace"
@@ -41,11 +41,11 @@ _UNUSED = [
     ('AI AGENT TEAMS', 'Agents that plan, build and review'),
     ('IBM Z SOCIETY', 'Co-founded · 0 → 50 members'),
 ]
-css, back, mid, sparks, pads, texts, mask = [], [], [], [], [], [], []
+css, back, mid, sparks, pads, texts, mask, blue, refl = [], [], [], [], [], [], [], [], []
 
 def dpath(points): return 'M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in points)
 
-def trace(id_, points, start, dur, width=7, idle=None, in_mask=False):
+def trace(id_, points, start, dur, width=7, idle=None, in_mask=False, bp=None, reflect=False):
     """Metallic trace (dark edge, gold body, highlight) that draws from its first point,
     with a white-hot spark riding the drawing edge; optionally keeps pulsing afterwards."""
     d = dpath(points)
@@ -53,6 +53,11 @@ def trace(id_, points, start, dur, width=7, idle=None, in_mask=False):
     common = f'class="{id_}" d="{d}" pathLength="100" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"'
     mid.append(f'<path {common} stroke="{EDGE}" stroke-width="{width + 4}"/>')
     mid.append(f'<path {common} stroke="url(#gold)" stroke-width="{width}"/>')
+    if reflect:
+        refl.append(f'<path {common} stroke="url(#gold)" stroke-width="{width}"/>')
+    if bp is not None:  # blueprint outline: fades in early, fades out once the copper is laid
+        css.append(f'#{id_}b{{animation:bpin .45s ease-out {bp:.2f}s both,bpout .5s ease-in {start + dur:.2f}s forwards}}')
+        blue.append(f'<path id="{id_}b" d="{d}" fill="none" stroke="{BLUE}" stroke-width="1.3" stroke-dasharray="4 4" stroke-linejoin="round" opacity="0"/>')
     mid.append(f'<path {common} stroke="{HILITE}" stroke-width="{max(1.2, width * 0.22):.1f}" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/>')
     anim = f'spark {dur:.2f}s ease-in-out {start:.2f}s forwards'
     if idle is not None:
@@ -93,7 +98,7 @@ for k in range(5):  # edge-connector gold fingers
 back.append(f'<text x="10" y="{RAIL - 47}" font-size="9" fill="{MUTED}">J1 PWR</text>')
 # --- power rail -----------------------------------------------------------------------------
 RAIL_X1 = W - 36
-t = 0.35
+t = 1.5
 trace('rail', [(34, RAIL), (RAIL_X1, RAIL)], t, 1.0, width=5, idle=7.5)
 t += 0.5
 
@@ -106,21 +111,26 @@ for ci, ch in enumerate(NAME):
     strokes, padpts = LETTERS[ch]
     strokes = [[(x + px * U, NY + py * U) for px, py in s] for s in strokes]
     ax, ay = strokes[0][0]
-    trace(f'st{li}', [(ax, RAIL), (ax, ay)], t, 0.16, width=5)
+    bp_t = 0.25 + (x - NX) / name_w * 0.8
+    trace(f'st{li}', [(ax, RAIL), (ax, ay)], t, 0.16, width=5, bp=bp_t, reflect=True)
     pad(f'sp{li}', ax, RAIL, t, r=5.5)
     for si, s in enumerate(strokes):
-        trace(f'L{li}_{si}', s, t + 0.16, 0.55, width=LW, idle=(6.4 + li * 0.34) if si == 0 else None, in_mask=True)
+        trace(f'L{li}_{si}', s, t + 0.16, 0.55, width=LW, idle=(8.2 + li * 0.34) if si == 0 else None, in_mask=True, bp=bp_t, reflect=True)
     for pi, (px, py) in enumerate(padpts):
+        blue.append(f'<path class="gd" d="M{x + px * U - 5:.1f},{NY + py * U:.1f} h10 M{x + px * U:.1f},{NY + py * U - 5:.1f} v10" stroke="{BLUE}" stroke-width="1"/>')
         pad(f'p{li}_{pi}', x + px * U, NY + py * U, t + 0.66)
     letters_done = t + 0.75
     t += 0.3; x += glyph_w(ch) + (gap_after(ch, nxt) if nxt != ' ' else GAP); li += 1
 t = letters_done
+css.append(f'.gd{{animation:bpin .45s ease-out .2s both,bpout .6s ease-in {t:.2f}s forwards}}'
+           '@keyframes bpin{from{opacity:0}to{opacity:.6}}@keyframes bpout{from{opacity:.6}to{opacity:0}}')
+t += 0.35
 css.append(f'#nameglow{{animation:flash 1.4s ease-out {t:.2f}s both}}'
-           '@keyframes flash{0%{opacity:0}22%{opacity:.95}100%{opacity:.38}}')
-css.append(f'#sheen{{animation:sheen 5.5s ease-in-out {t:.2f}s infinite}}'
-           f'@keyframes sheen{{0%{{transform:translateX(-260px)}}28%,100%{{transform:translateX({W + 60}px)}}}}')
+           '@keyframes flash{from{opacity:0}to{opacity:.38}}')
+css.append(f'#sheen{{animation:sheen 1.8s ease-in-out {t:.2f}s 1 both}}'
+           f'@keyframes sheen{{0%{{transform:translateX(-260px)}}100%{{transform:translateX({W + 60}px)}}}}')
 t += 0.45
-pad('railend', RAIL_X1, RAIL, 1.3, r=6.5)
+pad('railend', RAIL_X1, RAIL, 2.45, r=6.5)
 
 # --- branches to the achievement chips -----------------------------------------------------
 for i, (title, sub) in enumerate(CARDS):
@@ -162,6 +172,9 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
  <radialGradient id="vig" cx="50%" cy="40%" r="75%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/></radialGradient>
  <filter id="glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
  <filter id="big" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="22"/></filter>
+ <filter id="soft" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="1.6"/></filter>
+ <linearGradient id="reflfade" x1="0" y1="{RAIL}" x2="0" y2="{RAIL + 100}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+ <mask id="reflmask" maskUnits="userSpaceOnUse" x="0" y="{RAIL}" width="{W}" height="{H - RAIL}"><rect x="0" y="{RAIL + 6}" width="{W}" height="{H - RAIL}" fill="url(#reflfade)"/></mask>
  <mask id="namemask" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}">{''.join(mask)}</mask>
 </defs>
 <style>text{{font-family:{MONO}}}{''.join(css)}</style>
@@ -170,7 +183,11 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
 <rect width="{W}" height="{H}" rx="18" fill="url(#vig)"/>
 <ellipse id="nameglow" cx="{NX + name_w / 2}" cy="{NY + 3 * U}" rx="{name_w / 2 + 20}" ry="{4 * U}" fill="{GOLD}" filter="url(#big)" style="opacity:0"/>
 {''.join(back)}
-<g filter="url(#glow)">{''.join(mid)}</g>
+<g class="gd" stroke="{BLUE}" stroke-width="1" stroke-dasharray="2 6"><path d="M{NX - 26},{NY} H{NX + name_w + 26}"/><path d="M{NX - 26},{NY + 6 * U} H{NX + name_w + 26}"/></g>
+<g class="gd" font-size="8" fill="{BLUE}"><text x="{NX - 30}" y="{NY + 3}" text-anchor="end">CAP</text><text x="{NX - 30}" y="{NY + 6 * U + 3}" text-anchor="end">BASE</text></g>
+{''.join(blue)}
+<g mask="url(#reflmask)"><g transform="translate(0,{2 * RAIL + 6}) scale(1,-1)" opacity=".5" filter="url(#soft)">{''.join(refl)}</g></g>
+<g id="lit" filter="url(#glow)">{''.join(mid)}</g>
 <g mask="url(#namemask)"><rect id="sheen" x="0" y="{NY - 10}" width="200" height="{6 * U + 20}" fill="url(#shine)" transform="translate(-260 0)"/></g>
 <g filter="url(#glow)">{''.join(sparks)}</g>
 {''.join(pads)}
