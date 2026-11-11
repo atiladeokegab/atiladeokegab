@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://atilade.uk"><img src="./assets/terminal.svg" width="860" alt="Atilade Oke: Analyst @ ION, #1 IBM Z Student Ambassador worldwide, 8x hackathon winner" /></a>
+  <a href="https://atilade.uk"><img src="./assets/board.svg" width="100%" alt="Atilade Oke: Data &amp; AI @ ION, Electrical Engineering @ Manchester, #1 IBM Z Student Ambassador worldwide, 8x hackathon winner" /></a>
 </p>
 
 <p align="center">
