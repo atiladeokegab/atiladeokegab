@@ -3,7 +3,7 @@
 # Regenerate: python3 tools/make_traces.py assets/traces.svg
 import sys
 from html import escape
-W, H = 1040, 292
+W, H = 1040, 270
 BG, DOT, EDGE, GOLD, HILITE, SPARK, INK, SUB, MUTED, BLUE, LED = (
     '#070a14', '#151c33', '#4a3210', '#dba33f', '#fff1c4', '#fffdf2', '#f4f6ff', '#f0c877', '#56618a', '#63c7ff', '#58f0a0')
 MONO = "'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace"
@@ -29,7 +29,7 @@ for a, b in zip(NAME, NAME[1:] + ' '):
     if a == ' ': name_w += SPACE - GAP; continue
     name_w += glyph_w(a) + (gap_after(a, b) if b != ' ' else GAP)
 name_w -= GAP
-NX, NY, RAIL = (W - name_w) / 2 + 10, 50, 180
+NX, NY, RAIL = (W - name_w) / 2 + 10, 66, 66 + 6 * U + 8
 CARD_W, CARD_H, CM, CG = 293, 70, 50, 30
 ROW_Y = [206, 302]
 CARDS = []
@@ -93,14 +93,9 @@ def wiped(id_, x, y, spans, size, start, weight=700, spacing=0.0, dur=0.5):
     return start + dur
 
 # --- board furniture (static silkscreen, holes, passives) ----------------------------------
-for k in range(5):  # edge-connector gold fingers
-    back.append(f'<rect x="8" y="{RAIL - 39.5 + k * 17}" width="26" height="11" rx="2" fill="url(#gold)"/>')
-back.append(f'<text x="10" y="{RAIL - 47}" font-size="9" fill="{MUTED}">J1 PWR</text>')
 # --- power rail -----------------------------------------------------------------------------
 RAIL_X1 = W - 36
-t = 1.5
-trace('rail', [(34, RAIL), (RAIL_X1, RAIL)], t, 1.0, width=5, idle=7.5)
-t += 0.5
+t = 1.3
 
 # --- the name, letter by letter ---------------------------------------------------------------
 x = NX; li = 0; letters_done = t
@@ -112,10 +107,8 @@ for ci, ch in enumerate(NAME):
     strokes = [[(x + px * U, NY + py * U) for px, py in s] for s in strokes]
     ax, ay = strokes[0][0]
     bp_t = 0.25 + (x - NX) / name_w * 0.8
-    trace(f'st{li}', [(ax, RAIL), (ax, ay)], t, 0.16, width=5, bp=bp_t, reflect=True)
-    pad(f'sp{li}', ax, RAIL, t, r=5.5)
     for si, s in enumerate(strokes):
-        trace(f'L{li}_{si}', s, t + 0.16, 0.55, width=LW, idle=(8.2 + li * 0.34) if si == 0 else None, in_mask=True, bp=bp_t, reflect=True)
+        trace(f'L{li}_{si}', s, t + 0.16, 0.55, width=LW, in_mask=True, bp=bp_t, reflect=True)
     for pi, (px, py) in enumerate(padpts):
         blue.append(f'<path class="gd" d="M{x + px * U - 5:.1f},{NY + py * U:.1f} h10 M{x + px * U:.1f},{NY + py * U - 5:.1f} v10" stroke="{BLUE}" stroke-width="1"/>')
         pad(f'p{li}_{pi}', x + px * U, NY + py * U, t + 0.66)
@@ -130,7 +123,16 @@ css.append(f'#nameglow{{animation:flash 1.4s ease-out {t:.2f}s both}}'
 css.append(f'#sheen{{animation:sheen 1.8s ease-in-out {t:.2f}s 1 both}}'
            f'@keyframes sheen{{0%{{transform:translateX(-260px)}}100%{{transform:translateX({W + 60}px)}}}}')
 t += 0.45
-pad('railend', RAIL_X1, RAIL, 2.45, r=6.5)
+# crown settles on the first A once the name is done
+CX, CY = NX + 2 * U, NY - 13
+css.append(f'#crown{{animation:crown .9s cubic-bezier(.2,.9,.3,1) {t:.2f}s both}}'
+           '@keyframes crown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}')
+crown = (f'<g transform="translate({CX:.1f},{CY}) rotate(-9)"><g id="crown" filter="url(#glow)">'
+         f'<path d="M-19,0 L-23,-19 L-10,-9 L0,-24 L10,-9 L23,-19 L19,0 Z" fill="url(#gold)" stroke="{EDGE}" stroke-width="1.5" stroke-linejoin="round"/>'
+         f'<path d="M-17,-3.5 H17" stroke="{HILITE}" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>'
+         + ''.join(f'<circle cx="{a}" cy="{b}" r="3.2" fill="{HILITE}" stroke="{EDGE}" stroke-width="1"/>' for a, b in [(-23, -19), (0, -24), (23, -19)])
+         + '</g></g>')
+t += 0.9
 
 # --- branches to the achievement chips -----------------------------------------------------
 for i, (title, sub) in enumerate(CARDS):
@@ -191,6 +193,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
 <g mask="url(#namemask)"><rect id="sheen" x="0" y="{NY - 10}" width="200" height="{6 * U + 20}" fill="url(#shine)" transform="translate(-260 0)"/></g>
 <g filter="url(#glow)">{''.join(sparks)}</g>
 {''.join(pads)}
+{crown}
 {''.join(texts)}
 </svg>'''
 open(sys.argv[1], 'w').write(svg)

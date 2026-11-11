@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke, spelled out in gold circuit traces" /></a>
+  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke in gold traces, with a small crown on the first A" /></a>
 </p>
 
 <p align="center">
