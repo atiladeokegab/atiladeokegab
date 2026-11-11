@@ -1,9 +1,9 @@
 # Animated PCB header: current enters from an edge connector, draws "ATILADE OKE" in gold
-# traces letter by letter, then branches out to achievement chips. Pure SVG + CSS, no services.
+# traces letter by letter. Just the name: less is more. Pure SVG + CSS, no services.
 # Regenerate: python3 tools/make_traces.py assets/traces.svg
 import sys
 from html import escape
-W, H = 1040, 448
+W, H = 1040, 240
 BG, DOT, EDGE, GOLD, HILITE, SPARK, INK, SUB, MUTED, BLUE, LED = (
     '#070a14', '#151c33', '#4a3210', '#dba33f', '#fff1c4', '#fffdf2', '#f4f6ff', '#f0c877', '#56618a', '#63c7ff', '#58f0a0')
 MONO = "'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace"
@@ -29,10 +29,11 @@ for a, b in zip(NAME, NAME[1:] + ' '):
     if a == ' ': name_w += SPACE - GAP; continue
     name_w += glyph_w(a) + (gap_after(a, b) if b != ' ' else GAP)
 name_w -= GAP
-NX, NY, RAIL = (W - name_w) / 2 + 10, 36, 166
+NX, NY, RAIL = (W - name_w) / 2 + 10, 50, 180
 CARD_W, CARD_H, CM, CG = 293, 70, 50, 30
 ROW_Y = [206, 302]
-CARDS = [
+CARDS = []
+_UNUSED = [
     ('DATA & AI', '@ ION'),
     ('ELECTRICAL ENGINEERING', 'University of Manchester'),
     ('#1| WORLDWIDE', 'IBM Z Student Ambassador · 2025–26'),
@@ -87,25 +88,11 @@ def wiped(id_, x, y, spans, size, start, weight=700, spacing=0.0, dur=0.5):
     return start + dur
 
 # --- board furniture (static silkscreen, holes, passives) ----------------------------------
-for x, y in [(22, 22), (W - 22, 22), (22, H - 22), (W - 22, H - 22)]:
-    back.append(f'<circle cx="{x}" cy="{y}" r="8" fill="none" stroke="{GOLD}" stroke-opacity=".55" stroke-width="3"/><circle cx="{x}" cy="{y}" r="3.5" fill="#02040a"/>')
-for k in range(6):  # edge-connector gold fingers
-    back.append(f'<rect x="8" y="{RAIL - 47 + k * 17}" width="26" height="11" rx="2" fill="url(#gold)"/>')
-back.append(f'<text x="10" y="{RAIL - 55}" font-size="9" fill="{MUTED}">J1 PWR</text>')
-for k, (lbl, x) in enumerate([('R1', 70), ('R2', 112), ('C1', 154)]):  # tiny passives, bottom-left
-    y = H - 34
-    back.append(f'<rect x="{x}" y="{y}" width="7" height="10" fill="{GOLD}" opacity=".7"/><rect x="{x + 7}" y="{y}" width="14" height="10" fill="#1b233d"/>'
-                f'<rect x="{x + 21}" y="{y}" width="7" height="10" fill="{GOLD}" opacity=".7"/><text x="{x + 3}" y="{y - 5}" font-size="8" fill="{MUTED}">{lbl}</text>')
-back.append(f'<text x="{W - 46}" y="{H - 18}" font-size="10" fill="{MUTED}" text-anchor="end">ATILADE-OKE  REV 2026  //  atilade.uk</text>')
-# status LEDs, top right
-css.append(f'#pwr{{animation:ledon .3s ease-out .35s both}}#act{{animation:ledon .3s ease-out 1.2s both,blink 1.1s steps(1) 1.5s infinite}}'
-           '@keyframes ledon{from{fill-opacity:.12}to{fill-opacity:1}}@keyframes blink{50%{fill-opacity:.2}}')
-for k, (lbl, col, id_) in enumerate([('PWR', LED, 'pwr'), ('ACT', BLUE, 'act')]):
-    x = 230 + k * 56; ly = H - 29
-    back.append(f'<circle id="{id_}" cx="{x}" cy="{ly}" r="4.5" fill="{col}" fill-opacity=".12" filter="url(#glow)"/><text x="{x + 9}" y="{ly + 3.5}" font-size="9" fill="{MUTED}">{lbl}</text>')
-
+for k in range(5):  # edge-connector gold fingers
+    back.append(f'<rect x="8" y="{RAIL - 39.5 + k * 17}" width="26" height="11" rx="2" fill="url(#gold)"/>')
+back.append(f'<text x="10" y="{RAIL - 47}" font-size="9" fill="{MUTED}">J1 PWR</text>')
 # --- power rail -----------------------------------------------------------------------------
-RAIL_X1 = CM + 2 * (CARD_W + CG) + CARD_W + CG / 2
+RAIL_X1 = W - 36
 t = 0.35
 trace('rail', [(34, RAIL), (RAIL_X1, RAIL)], t, 1.0, width=5, idle=7.5)
 t += 0.5
@@ -133,6 +120,7 @@ css.append(f'#nameglow{{animation:flash 1.4s ease-out {t:.2f}s both}}'
 css.append(f'#sheen{{animation:sheen 5.5s ease-in-out {t:.2f}s infinite}}'
            f'@keyframes sheen{{0%{{transform:translateX(-260px)}}28%,100%{{transform:translateX({W + 60}px)}}}}')
 t += 0.45
+pad('railend', RAIL_X1, RAIL, 1.3, r=6.5)
 
 # --- branches to the achievement chips -----------------------------------------------------
 for i, (title, sub) in enumerate(CARDS):
@@ -159,18 +147,13 @@ for i, (title, sub) in enumerate(CARDS):
     t += 0.28
 t += 0.9
 
-# --- closing line + cursor -------------------------------------------------------------------
-e, ex = typed('tag', W / 2, H - 28, 'I BUILD THE FUTURE', 16, BLUE, t, per=0.05, anchor='middle', spacing=3)
-css.append(f'#cur{{animation:show 0s {e:.2f}s both,cblink 1s steps(1) {e:.2f}s infinite}}@keyframes cblink{{50%{{opacity:0}}}}')
-texts.append(f'<rect id="cur" x="{ex + 4:.1f}" y="{H - 42}" width="9" height="17" fill="{BLUE}" opacity="0"/>')
-
 css.append('@keyframes draw{to{stroke-dashoffset:0}}'
            '@keyframes spark{0%{stroke-dashoffset:0;opacity:1}90%{opacity:1}100%{stroke-dashoffset:-95;opacity:0}}'
            '@keyframes flow{0%{stroke-dashoffset:0;opacity:.8}100%{stroke-dashoffset:-100;opacity:.8}}'
            '@keyframes pop{0%{transform:scale(0)}65%{transform:scale(1.45)}100%{transform:scale(1)}}'
            '@keyframes show{from{opacity:0}to{opacity:1}}'
            '@keyframes card{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}')
-svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Atilade Oke, spelled out in gold circuit traces. Data and AI at ION. Electrical Engineering at Manchester. Number 1 IBM Z Student Ambassador worldwide. 8x hackathon winner. I build the future.">
+svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Atilade Oke, spelled out in gold circuit traces">
 <defs>
  <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="{DOT}"/></pattern>
  <linearGradient id="gold" x1="0" y1="0" x2="46" y2="92" gradientUnits="userSpaceOnUse" spreadMethod="reflect"><stop offset="0" stop-color="#f6cf75"/><stop offset=".5" stop-color="{GOLD}"/><stop offset="1" stop-color="#b47d22"/></linearGradient>
@@ -194,4 +177,4 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{
 {''.join(texts)}
 </svg>'''
 open(sys.argv[1], 'w').write(svg)
-print(f'intro {e:.1f}s, {len(svg) // 1024} KB')
+print(f'intro {t:.1f}s, {len(svg) // 1024} KB')
