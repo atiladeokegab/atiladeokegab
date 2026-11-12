@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke in gold traces: two small robots fix the light switch and straighten the crown on the first A" /></a>
+  <a href="https://atilade.uk"><img src="./assets/traces.svg" width="100%" alt="Atilade Oke in gold traces: two Minions fix the crooked crown on the first A, flip the switch, and light the name in gold" /></a>
 </p>
 
 <p align="center">
