@@ -1,96 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 320" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 320" width="1040" height="320" role="img" aria-label="Atilade Oke in gold traces: two Minions fix the crooked crown on the first A, flip the switch, and light the name in gold">
 <defs>
-  <radialGradient id="vig" cx="50%" cy="45%" r="65%">
-    <stop offset="0%" stop-color="#0b1021" stop-opacity="0"/>
-    <stop offset="60%" stop-color="#05070f" stop-opacity=".55"/>
-    <stop offset="100%" stop-color="#020308" stop-opacity=".95"/>
-  </radialGradient>
-  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-    <circle cx="12" cy="12" r="1.1" fill="#151c33"/>
-  </pattern>
-  <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#fff1c4"/>
-    <stop offset="35%" stop-color="#dba33f"/>
-    <stop offset="100%" stop-color="#4a3210"/>
+  <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="#151c33"/></pattern>
+  <linearGradient id="gold" x1="0" y1="0" x2="46" y2="92" gradientUnits="userSpaceOnUse" spreadMethod="reflect">
+    <stop offset="0" stop-color="#f6cf75"/><stop offset=".5" stop-color="#dba33f"/><stop offset="1" stop-color="#b47d22"/>
   </linearGradient>
+  <linearGradient id="minion_body_a" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#fff176"/><stop offset="35%" stop-color="#ffd426"/><stop offset="100%" stop-color="#e0a400"/>
+  </linearGradient>
+  <linearGradient id="minion_body_b" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#fff176"/><stop offset="35%" stop-color="#ffd426"/><stop offset="100%" stop-color="#e0a400"/>
+  </linearGradient>
+  <linearGradient id="denim_grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3b6ca8"/><stop offset="60%" stop-color="#28568e"/><stop offset="100%" stop-color="#1b3d68"/>
+  </linearGradient>
+  <linearGradient id="silver_rim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#cbd3e0"/><stop offset="70%" stop-color="#798294"/><stop offset="100%" stop-color="#4a5263"/>
+  </linearGradient>
+  <linearGradient id="red_knob" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ff6b6b"/><stop offset="40%" stop-color="#e02424"/><stop offset="100%" stop-color="#800f0f"/>
+  </linearGradient>
+  <radialGradient id="lamp_core" cx="40%" cy="40%" r="65%">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#fff3a1"/><stop offset="70%" stop-color="#ffb71b"/><stop offset="100%" stop-color="#e08400"/>
+  </radialGradient>
   <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-    <stop offset="45%" stop-color="#ffffff" stop-opacity=".15"/>
-    <stop offset="50%" stop-color="#ffffff" stop-opacity=".85"/>
-    <stop offset="55%" stop-color="#ffffff" stop-opacity=".15"/>
-    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
-
-  <!-- Minion Gradients -->
-  <linearGradient id="minion_body_a" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ffe24a"/>
-    <stop offset="50%" stop-color="#f5c227"/>
-    <stop offset="100%" stop-color="#cc9b14"/>
-  </linearGradient>
-  <linearGradient id="minion_body_b" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ffe459"/>
-    <stop offset="50%" stop-color="#f5c227"/>
-    <stop offset="100%" stop-color="#cc9b14"/>
-  </linearGradient>
-  <linearGradient id="overall_blue" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#3b72bd"/>
-    <stop offset="60%" stop-color="#244d85"/>
-    <stop offset="100%" stop-color="#17355e"/>
-  </linearGradient>
-  <linearGradient id="silver_rim" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#ffffff"/>
-    <stop offset="30%" stop-color="#ced4da"/>
-    <stop offset="70%" stop-color="#868e96"/>
-    <stop offset="100%" stop-color="#495057"/>
-  </linearGradient>
-  <radialGradient id="red_knob" cx="35%" cy="35%" r="65%">
-    <stop offset="0%" stop-color="#ff6b6b"/>
-    <stop offset="40%" stop-color="#e03131"/>
-    <stop offset="100%" stop-color="#731111"/>
+  <radialGradient id="vig" cx="50%" cy="40%" r="75%">
+    <stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/>
   </radialGradient>
-  <radialGradient id="lamp_core" cx="40%" cy="40%" r="60%">
-    <stop offset="0%" stop-color="#ffffff"/>
-    <stop offset="30%" stop-color="#fff8d6"/>
-    <stop offset="70%" stop-color="#ffd43b"/>
-    <stop offset="100%" stop-color="#f59f00"/>
-  </radialGradient>
-  <radialGradient id="lamp_bloom" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffd43b" stop-opacity="0.95"/>
-    <stop offset="35%" stop-color="#fcc419" stop-opacity="0.45"/>
-    <stop offset="70%" stop-color="#fab005" stop-opacity="0.15"/>
-    <stop offset="100%" stop-color="#fab005" stop-opacity="0"/>
-  </radialGradient>
-
-  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-    <feGaussianBlur stdDeviation="3.5" result="b"/>
-    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  <filter id="glow" x="-15%" y="-40%" width="130%" height="180%">
+    <feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>
-  <filter id="big" x="-40%" y="-40%" width="180%" height="180%">
-    <feGaussianBlur stdDeviation="16"/>
-  </filter>
-  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-    <feGaussianBlur stdDeviation="2.5"/>
-  </filter>
-  <linearGradient id="reflfade" x1="0" y1="171" x2="0" y2="278" gradientUnits="userSpaceOnUse">
-    <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
-    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  <filter id="big" x="-40%" y="-80%" width="180%" height="260%"><feGaussianBlur stdDeviation="24"/></filter>
+  <filter id="soft" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <linearGradient id="reflfade" x1="0" y1="165" x2="0" y2="265" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#fff" stop-opacity=".65"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
-  <mask id="reflmask" maskUnits="userSpaceOnUse" x="0" y="171" width="1040" height="113">
-    <rect x="0" y="171" width="1040" height="113" fill="url(#reflfade)"/>
+  <mask id="reflmask" maskUnits="userSpaceOnUse" x="0" y="165" width="1040" height="155">
+    <rect x="0" y="171" width="1040" height="155" fill="url(#reflfade)"/>
   </mask>
   <linearGradient id="botfade" x1="0" y1="278" x2="0" y2="316" gradientUnits="userSpaceOnUse">
     <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
   <mask id="botmask" maskUnits="userSpaceOnUse" x="0" y="278" width="1040" height="42">
-    <rect x="0" y="280" width="1040" height="42" fill="url(#botfade)"/></mask>
+    <rect x="0" y="280" width="1040" height="42" fill="url(#botfade)"/>
+  </mask>
   <mask id="namemask" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="320"><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.0,129.0 L140.0,129.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,165.0 L200.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L170.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L230.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M254.0,165.0 L254.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L338.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,129.0 L428.0,129.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L608.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M548.0,120.0 L593.0,120.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,165.0 L773.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M788.0,120.0 L833.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L923.0,165.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M863.0,120.0 L908.0,120.0" stroke="#fff" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/></mask>
 </defs>
 <style>
 text{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace}
-#lit{animation:k0 16.00s linear infinite}@keyframes k0{0.00%{opacity:0.25}55.00%{opacity:0.25}55.62%{opacity:0.6}56.25%{opacity:1}91.25%{opacity:1}93.75%{opacity:0.25}100.00%{opacity:0.25}}#padsg{animation:k2 16.00s linear infinite}@keyframes k2{0.00%{opacity:0.25}55.00%{opacity:0.25}55.62%{opacity:0.6}56.25%{opacity:1}91.25%{opacity:1}93.75%{opacity:0.25}100.00%{opacity:0.25}}#reflg{animation:k4 16.00s linear infinite}@keyframes k4{0.00%{opacity:0.18}55.00%{opacity:0.18}56.25%{opacity:0.6}91.25%{opacity:0.6}93.75%{opacity:0.18}100.00%{opacity:0.18}}#nameglow{animation:k6 16.00s linear infinite}@keyframes k6{0.00%{opacity:0}55.00%{opacity:0}56.25%{opacity:0.42}91.25%{opacity:0.42}93.75%{opacity:0}100.00%{opacity:0}}#sheen{animation:k8 16.00s linear infinite}@keyframes k8{0.00%{transform:translateX(-260px);opacity:0}57.50%{transform:translateX(-260px);opacity:0}58.13%{transform:translateX(-260px);opacity:1}67.50%{transform:translateX(1100px);opacity:1}68.12%{transform:translateX(1100px);opacity:0}100.00%{transform:translateX(-260px);opacity:0}}#wire_spark{animation:k10 16.00s linear infinite}@keyframes k10{0.00%{stroke-dashoffset:160;opacity:0}55.00%{stroke-dashoffset:160;opacity:1}57.19%{stroke-dashoffset:-160;opacity:1}57.50%{stroke-dashoffset:-160;opacity:0}100.00%{stroke-dashoffset:160;opacity:0}}#sw_lever{animation:k12 16.00s linear infinite}@keyframes k12{0.00%{transform:rotate(-45deg)}51.25%{transform:rotate(-45deg)}52.50%{transform:rotate(38deg)}92.50%{transform:rotate(38deg)}93.75%{transform:rotate(-45deg)}100.00%{transform:rotate(-45deg)}}#lamp_lit{animation:k14 16.00s linear infinite}@keyframes k14{0.00%{opacity:0}55.00%{opacity:0}55.94%{opacity:0.7}56.25%{opacity:1}91.25%{opacity:1}93.75%{opacity:0}100.00%{opacity:0}}#lamp_glow{animation:k16 16.00s linear infinite}@keyframes k16{0.00%{opacity:0;transform:scale(0.3)}55.00%{opacity:0;transform:scale(0.3)}56.25%{opacity:0.85;transform:scale(1.0)}58.13%{opacity:0.95;transform:scale(1.1)}60.00%{opacity:0.85;transform:scale(1.0)}91.25%{opacity:0.85;transform:scale(1.0)}93.75%{opacity:0;transform:scale(0.3)}100.00%{opacity:0;transform:scale(0.3)}}#crown_g{animation:k18 16.00s linear infinite}@keyframes k18{0.00%{transform:rotate(24deg)}42.50%{transform:rotate(24deg)}43.75%{transform:rotate(0deg)}92.50%{transform:rotate(0deg)}93.75%{transform:rotate(24deg)}100.00%{transform:rotate(24deg)}}#crown_sparks{animation:k20 16.00s linear infinite}@keyframes k20{0.00%{opacity:0;transform:scale(0)}43.44%{opacity:0;transform:scale(0)}44.06%{opacity:1;transform:scale(1.4)}46.56%{opacity:0;transform:scale(2.0)}100.00%{opacity:0;transform:scale(0)}}#bonk_star{animation:k22 16.00s linear infinite}@keyframes k22{0.00%{opacity:0;transform:translate(865px,204px) scale(0)}12.19%{opacity:0;transform:translate(865px,204px) scale(0)}12.62%{opacity:1;transform:translate(865px,204px) scale(1.6)}15.31%{opacity:0;transform:translate(865px,204px) scale(2.2)}100.00%{opacity:0;transform:translate(865px,204px) scale(0)}}.minion_a{animation:k24 16.00s linear infinite}@keyframes k24{0.00%{transform:translate(925px,278px)}55.00%{transform:translate(925px,278px)}56.25%{transform:translate(925px,264px)}58.13%{transform:translate(925px,278px)}60.00%{transform:translate(925px,264px)}61.88%{transform:translate(925px,278px)}90.62%{transform:translate(925px,278px)}100.00%{transform:translate(925px,278px)}}.m_a_arm_l{animation:k26 16.00s linear infinite}@keyframes k26{0.00%{transform:rotate(-15deg)}9.38%{transform:rotate(-15deg)}10.62%{transform:rotate(75deg)}12.62%{transform:rotate(-85deg)}15.00%{transform:rotate(-85deg)}17.50%{transform:rotate(-45deg)}21.88%{transform:rotate(-15deg)}56.25%{transform:rotate(-155deg)}90.62%{transform:rotate(-155deg)}93.75%{transform:rotate(-15deg)}100.00%{transform:rotate(-15deg)}}.m_a_arm_r{animation:k28 16.00s linear infinite}@keyframes k28{0.00%{transform:rotate(10deg)}48.75%{transform:rotate(10deg)}50.62%{transform:rotate(-55deg)}52.50%{transform:rotate(30deg)}55.00%{transform:rotate(30deg)}56.25%{transform:rotate(155deg)}90.62%{transform:rotate(155deg)}93.75%{transform:rotate(10deg)}100.00%{transform:rotate(10deg)}}.m_a_pupil{animation:k30 16.00s linear infinite}@keyframes k30{0.00%{transform:translate(-2px, 0px)}12.50%{transform:translate(-3px, 1px)}21.88%{transform:translate(-3px, 0px)}40.62%{transform:translate(-3.5px, -2px)}48.75%{transform:translate(2px, 0px)}52.50%{transform:translate(2px, 1px)}56.25%{transform:translate(0px, -2px)}90.62%{transform:translate(0px, -2px)}93.75%{transform:translate(-2px, 0px)}100.00%{transform:translate(-2px, 0px)}}.minion_a_inner{animation:k32 16.00s linear infinite}@keyframes k32{0.00%{transform:none}10.62%{transform:scale(0.96, 1.05)}12.62%{transform:scale(1.08, 0.92)}14.37%{transform:none}52.50%{transform:scale(1.04, 0.96)}56.25%{transform:scale(0.92, 1.1)}58.13%{transform:scale(1.06, 0.94)}60.00%{transform:scale(0.92, 1.1)}61.88%{transform:scale(1.06, 0.94)}90.62%{transform:none}100.00%{transform:none}}.minion_b{animation:k34 16.00s linear infinite}@keyframes k34{0.00%{transform:translate(865px,278px)}12.19%{transform:translate(865px,278px)}12.81%{transform:translate(855px,278px)}20.00%{transform:translate(865px,278px)}21.25%{transform:translate(805px,278px) scaleX(-1)}25.00%{transform:translate(458.5px,278px) scaleX(-1)}33.75%{transform:translate(52.0px,278px) scaleX(-1)}34.38%{transform:translate(52.0px,278px) scaleX(1)}36.25%{transform:translate(52.0px,223px) scaleX(1)}38.75%{transform:translate(52.0px,158px) scaleX(1)}41.25%{transform:translate(52.0px,105.0px) scaleX(1)}42.50%{transform:translate(58.0px,101.0px) scaleX(1)}43.75%{transform:translate(52.0px,105.0px) scaleX(1)}45.00%{transform:translate(52.0px,105.0px) scaleX(1)}55.00%{transform:translate(52.0px,105.0px) scaleX(1)}56.25%{transform:translate(52.0px,91.0px) scaleX(1)}58.13%{transform:translate(52.0px,105.0px) scaleX(1)}60.00%{transform:translate(52.0px,91.0px) scaleX(1)}61.88%{transform:translate(52.0px,105.0px) scaleX(1)}90.62%{transform:translate(52.0px,105.0px) scaleX(1)}93.75%{transform:translate(52.0px,278px) scaleX(1)}95.00%{transform:translate(458.5px,278px) scaleX(1)}98.75%{transform:translate(865px,278px) scaleX(1)}100.00%{transform:translate(865px,278px) scaleX(1)}}.minion_b_inner{animation:k36 16.00s linear infinite}@keyframes k36{0.00%{transform:none}12.19%{transform:none}12.81%{transform:scale(1.4, 0.52)}14.06%{transform:scale(0.85, 1.2)}15.62%{transform:none}21.25%{transform:scale(1.1, 0.9) rotate(-14deg)}23.75%{transform:scale(0.92, 1.08) rotate(-18deg)}26.25%{transform:scale(1.1, 0.9) rotate(-14deg)}28.75%{transform:scale(0.92, 1.08) rotate(-18deg)}31.25%{transform:scale(1.1, 0.9) rotate(-14deg)}33.75%{transform:none}36.25%{transform:scale(0.92, 1.08)}38.75%{transform:scale(1.08, 0.92)}41.25%{transform:none}56.25%{transform:scale(0.92, 1.1)}58.13%{transform:scale(1.08, 0.92)}60.00%{transform:scale(0.92, 1.1)}61.88%{transform:scale(1.08, 0.92)}90.62%{transform:none}100.00%{transform:none}}.m_b_bump{animation:k38 16.00s linear infinite}@keyframes k38{0.00%{opacity:0;transform:scale(0)}12.81%{opacity:0;transform:scale(0)}13.44%{opacity:1;transform:scale(1.3)}14.69%{opacity:1;transform:scale(1.0)}21.25%{opacity:1;transform:scale(1.0)}23.75%{opacity:0;transform:scale(0)}100.00%{opacity:0;transform:scale(0)}}.m_b_stars{animation:k40 16.00s linear infinite}@keyframes k40{0.00%{opacity:0;transform:scale(0) rotate(0deg)}12.81%{opacity:0;transform:scale(0) rotate(0deg)}13.75%{opacity:1;transform:scale(1.2) rotate(100deg)}16.25%{opacity:1;transform:scale(1.0) rotate(240deg)}20.00%{opacity:1;transform:scale(0.8) rotate(360deg)}22.50%{opacity:0;transform:scale(0) rotate(420deg)}100.00%{opacity:0;transform:scale(0) rotate(0deg)}}.m_b_pupil{animation:k42 16.00s linear infinite}@keyframes k42{0.00%{transform:translate(2px, 0px)}9.38%{transform:translate(2px, 0px)}13.12%{transform:translate(-2px, -2px)}15.00%{transform:translate(2px, 2px)}16.88%{transform:translate(-1px, 1px)}21.25%{transform:translate(-2.5px, 0px)}41.25%{transform:translate(2px, -1px)}56.25%{transform:translate(0px, -2px)}90.62%{transform:translate(0px, -2px)}100.00%{transform:translate(2px, 0px)}}.m_b_arm_l{animation:k44 16.00s linear infinite}@keyframes k44{0.00%{transform:rotate(0deg)}12.81%{transform:rotate(-70deg)}17.50%{transform:rotate(-70deg)}20.00%{transform:rotate(0deg)}21.25%{transform:rotate(-55deg)}23.75%{transform:rotate(55deg)}26.25%{transform:rotate(-55deg)}28.75%{transform:rotate(55deg)}31.25%{transform:rotate(-55deg)}33.75%{transform:rotate(-85deg)}36.25%{transform:rotate(-35deg)}38.75%{transform:rotate(-85deg)}41.25%{transform:rotate(105deg)}43.75%{transform:rotate(105deg)}46.88%{transform:rotate(0deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}93.75%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_b_arm_r{animation:k46 16.00s linear infinite}@keyframes k46{0.00%{transform:rotate(0deg)}12.81%{transform:rotate(70deg)}17.50%{transform:rotate(70deg)}20.00%{transform:rotate(0deg)}21.25%{transform:rotate(55deg)}23.75%{transform:rotate(-55deg)}26.25%{transform:rotate(55deg)}28.75%{transform:rotate(-55deg)}31.25%{transform:rotate(55deg)}33.75%{transform:rotate(-35deg)}36.25%{transform:rotate(-85deg)}38.75%{transform:rotate(-35deg)}41.25%{transform:rotate(105deg)}43.75%{transform:rotate(105deg)}46.88%{transform:rotate(0deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}93.75%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_b_l1{animation:k48 16.00s linear infinite}@keyframes k48{0.00%{transform:none}20.00%{transform:none}21.25%{transform:rotate(36deg)}23.12%{transform:rotate(-36deg)}25.00%{transform:rotate(36deg)}26.88%{transform:rotate(-36deg)}28.75%{transform:rotate(36deg)}30.63%{transform:rotate(-36deg)}32.50%{transform:rotate(36deg)}33.75%{transform:none}93.75%{transform:none}95.00%{transform:rotate(36deg)}96.88%{transform:rotate(-36deg)}98.75%{transform:none}100.00%{transform:none}}.m_b_l2{animation:k50 16.00s linear infinite}@keyframes k50{0.00%{transform:none}20.00%{transform:none}21.25%{transform:rotate(-36deg)}23.12%{transform:rotate(36deg)}25.00%{transform:rotate(-36deg)}26.88%{transform:rotate(36deg)}28.75%{transform:rotate(-36deg)}30.63%{transform:rotate(36deg)}32.50%{transform:rotate(-36deg)}33.75%{transform:none}93.75%{transform:none}95.00%{transform:rotate(-36deg)}96.88%{transform:rotate(36deg)}98.75%{transform:none}100.00%{transform:none}}
+#lit{animation:k0 16.00s linear infinite}@keyframes k0{0.00%{opacity:0.25}55.00%{opacity:0.25}55.62%{opacity:0.6}56.25%{opacity:1}91.25%{opacity:1}93.75%{opacity:0.25}100.00%{opacity:0.25}}#padsg{animation:k1 16.00s linear infinite}@keyframes k1{0.00%{opacity:0.25}55.00%{opacity:0.25}55.62%{opacity:0.6}56.25%{opacity:1}91.25%{opacity:1}93.75%{opacity:0.25}100.00%{opacity:0.25}}#reflg{animation:k2 16.00s linear infinite}@keyframes k2{0.00%{opacity:0.18}55.00%{opacity:0.18}56.25%{opacity:0.6}91.25%{opacity:0.6}93.75%{opacity:0.18}100.00%{opacity:0.18}}#nameglow{animation:k3 16.00s linear infinite}@keyframes k3{0.00%{opacity:0}55.00%{opacity:0}56.25%{opacity:0.42}91.25%{opacity:0.42}93.75%{opacity:0}100.00%{opacity:0}}#sheen{animation:k4 16.00s linear infinite}@keyframes k4{0.00%{transform:translateX(-260px);opacity:0}57.50%{transform:translateX(-260px);opacity:0}58.13%{transform:translateX(-260px);opacity:1}67.50%{transform:translateX(1100px);opacity:1}68.12%{transform:translateX(1100px);opacity:0}100.00%{transform:translateX(-260px);opacity:0}}#wire_spark{animation:k5 16.00s linear infinite}@keyframes k5{0.00%{stroke-dashoffset:160;opacity:0}55.00%{stroke-dashoffset:160;opacity:1}57.19%{stroke-dashoffset:-160;opacity:1}57.50%{stroke-dashoffset:-160;opacity:0}100.00%{stroke-dashoffset:160;opacity:0}}#sw_lever{animation:k6 16.00s linear infinite}@keyframes k6{0.00%{transform:rotate(-45deg)}51.25%{transform:rotate(-45deg)}52.50%{transform:rotate(38deg)}92.50%{transform:rotate(38deg)}93.75%{transform:rotate(-45deg)}100.00%{transform:rotate(-45deg)}}#lamp_lit{animation:k7 16.00s linear infinite}@keyframes k7{0.00%{opacity:0}54.69%{opacity:0}55.00%{opacity:1}92.50%{opacity:1}93.75%{opacity:0}100.00%{opacity:0}}#lamp_glow{animation:k8 16.00s linear infinite}@keyframes k8{0.00%{opacity:0;transform:scale(0.5)}54.69%{opacity:0;transform:scale(0.5)}55.31%{opacity:0.95;transform:scale(1.1)}56.25%{opacity:0.85;transform:scale(1.0)}92.50%{opacity:0.85;transform:scale(1.0)}93.75%{opacity:0;transform:scale(0.5)}100.00%{opacity:0;transform:scale(0.5)}}#crownr{animation:k9 16.00s linear infinite}@keyframes k9{0.00%{transform:rotate(-18deg)}42.50%{transform:rotate(-18deg)}43.75%{transform:rotate(4deg)}45.00%{transform:none}92.50%{transform:none}95.00%{transform:rotate(-18deg)}100.00%{transform:rotate(-18deg)}}#crown_sparks{animation:k10 16.00s linear infinite}@keyframes k10{0.00%{opacity:0;transform:scale(0)}43.44%{opacity:0;transform:scale(0)}44.06%{opacity:1;transform:scale(1.4)}46.56%{opacity:0;transform:scale(2.0)}100.00%{opacity:0;transform:scale(0)}}#bonk_star{animation:k11 16.00s linear infinite}@keyframes k11{0.00%{opacity:0;transform:translate(861px,204px) scale(0)}12.19%{opacity:0;transform:translate(861px,204px) scale(0)}12.62%{opacity:1;transform:translate(861px,204px) scale(1.5)}15.31%{opacity:0;transform:translate(861px,204px) scale(2.2)}100.00%{opacity:0;transform:translate(861px,204px) scale(0)}}.minion_a{animation:k12 16.00s linear infinite}@keyframes k12{0.00%{transform:translate(925px,278px)}55.00%{transform:translate(925px,278px)}56.25%{transform:translate(925px,266px)}58.13%{transform:translate(925px,278px)}60.00%{transform:translate(925px,266px)}61.88%{transform:translate(925px,278px)}63.75%{transform:translate(925px,266px)}65.62%{transform:translate(925px,278px)}67.50%{transform:translate(925px,266px)}69.38%{transform:translate(925px,278px)}91.25%{transform:translate(925px,278px)}100.00%{transform:translate(925px,278px)}}.m_a_arm_l{animation:k13 16.00s linear infinite}@keyframes k13{0.00%{transform:rotate(0deg)}9.38%{transform:rotate(0deg)}10.94%{transform:rotate(75deg)}12.62%{transform:rotate(-85deg)}14.69%{transform:rotate(-85deg)}16.25%{transform:rotate(-45deg)}21.88%{transform:rotate(-45deg)}24.38%{transform:rotate(0deg)}55.00%{transform:rotate(0deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}92.50%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_a_arm_r{animation:k14 16.00s linear infinite}@keyframes k14{0.00%{transform:rotate(0deg)}48.75%{transform:rotate(0deg)}50.62%{transform:rotate(-55deg)}52.50%{transform:rotate(30deg)}54.37%{transform:rotate(30deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}92.50%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_a_pupil{animation:k15 16.00s linear infinite}@keyframes k15{0.00%{transform:none}8.75%{transform:translate(2px, 1px)}16.25%{transform:translate(-2.5px, -1px)}48.75%{transform:translate(-2px, -3px)}53.75%{transform:translate(-2px, -3px)}56.25%{transform:none}91.25%{transform:none}100.00%{transform:none}}.m_a_lid{animation:k16 16.00s linear infinite}@keyframes k16{0.00%{opacity:0}5.62%{opacity:0}6.25%{opacity:1}7.19%{opacity:0}75.00%{opacity:0}75.62%{opacity:1}76.56%{opacity:0}100.00%{opacity:0}}.minion_a_inner{animation:k17 16.00s linear infinite}@keyframes k17{0.00%{transform:none}10.94%{transform:scale(0.96, 1.05)}12.50%{transform:scale(1.08, 0.92)}14.37%{transform:none}55.62%{transform:none}56.25%{transform:scale(0.94, 1.08)}58.13%{transform:scale(1.06, 0.94)}60.00%{transform:scale(0.94, 1.08)}61.88%{transform:scale(1.06, 0.94)}90.62%{transform:none}100.00%{transform:none}}.minion_b{animation:k18 16.00s linear infinite}@keyframes k18{0.00%{transform:translate(865px,278px)}12.19%{transform:translate(865px,278px)}12.81%{transform:translate(877px,278px)}20.00%{transform:translate(865px,278px)}21.25%{transform:translate(805px,278px) scaleX(-1)}25.00%{transform:translate(458.5px,278px) scaleX(-1)}33.75%{transform:translate(52.0px,278px) scaleX(-1)}34.38%{transform:translate(52.0px,278px) scaleX(1)}36.25%{transform:translate(52.0px,223px) scaleX(1)}38.75%{transform:translate(52.0px,158px) scaleX(1)}41.25%{transform:translate(52.0px,105.0px) scaleX(1)}42.50%{transform:translate(58.0px,101.0px) scaleX(1)}43.75%{transform:translate(52.0px,105.0px) scaleX(1)}45.00%{transform:translate(52.0px,105.0px) scaleX(1)}55.00%{transform:translate(52.0px,105.0px) scaleX(1)}56.25%{transform:translate(52.0px,93.0px) scaleX(1)}58.13%{transform:translate(52.0px,105.0px) scaleX(1)}60.00%{transform:translate(52.0px,93.0px) scaleX(1)}61.88%{transform:translate(52.0px,105.0px) scaleX(1)}90.62%{transform:translate(52.0px,105.0px) scaleX(1)}93.75%{transform:translate(52.0px,278px) scaleX(1)}95.00%{transform:translate(458.5px,278px) scaleX(1)}98.75%{transform:translate(865px,278px) scaleX(1)}100.00%{transform:translate(865px,278px)}}.minion_b_inner{animation:k19 16.00s linear infinite}@keyframes k19{0.00%{transform:none}12.19%{transform:none}12.81%{transform:scale(1.4, 0.52)}14.06%{transform:scale(0.85, 1.2)}15.62%{transform:none}21.25%{transform:scale(1.1, 0.9) rotate(14deg)}23.75%{transform:scale(0.92, 1.08) rotate(18deg)}26.25%{transform:scale(1.1, 0.9) rotate(14deg)}28.75%{transform:scale(0.92, 1.08) rotate(18deg)}31.25%{transform:scale(1.1, 0.9) rotate(14deg)}33.75%{transform:none}36.25%{transform:scale(0.92, 1.08)}38.75%{transform:scale(1.08, 0.92)}41.25%{transform:none}56.25%{transform:scale(0.92, 1.1)}58.13%{transform:scale(1.08, 0.92)}60.00%{transform:scale(0.92, 1.1)}61.88%{transform:scale(1.08, 0.92)}90.62%{transform:none}100.00%{transform:none}}.m_b_bump{animation:k20 16.00s linear infinite}@keyframes k20{0.00%{opacity:0;transform:scale(0)}12.81%{opacity:0;transform:scale(0)}13.44%{opacity:1;transform:scale(1.3)}14.69%{opacity:1;transform:scale(1.0)}21.25%{opacity:1;transform:scale(1.0)}23.75%{opacity:0;transform:scale(0)}100.00%{opacity:0;transform:scale(0)}}.m_b_stars{animation:k21 16.00s linear infinite}@keyframes k21{0.00%{opacity:0;transform:scale(0) rotate(0deg)}12.81%{opacity:0;transform:scale(0) rotate(0deg)}13.75%{opacity:1;transform:scale(1.2) rotate(100deg)}16.25%{opacity:1;transform:scale(1.0) rotate(240deg)}20.00%{opacity:1;transform:scale(0.8) rotate(360deg)}22.50%{opacity:0;transform:scale(0) rotate(420deg)}100.00%{opacity:0;transform:scale(0) rotate(0deg)}}.m_b_pupil{animation:k22 16.00s linear infinite}@keyframes k22{0.00%{transform:none}9.38%{transform:translate(-2px, 0px)}13.12%{transform:translate(2px, -2px)}15.00%{transform:translate(-2px, 2px)}16.88%{transform:translate(1px, 1px)}21.25%{transform:translate(2.5px, 0px)}41.25%{transform:translate(2px, -1px)}56.25%{transform:none}90.62%{transform:none}100.00%{transform:none}}.m_b_arm_l{animation:k23 16.00s linear infinite}@keyframes k23{0.00%{transform:rotate(0deg)}12.81%{transform:rotate(-70deg)}17.50%{transform:rotate(-70deg)}20.00%{transform:rotate(0deg)}21.25%{transform:rotate(-55deg)}23.75%{transform:rotate(55deg)}26.25%{transform:rotate(-55deg)}28.75%{transform:rotate(55deg)}31.25%{transform:rotate(-55deg)}33.75%{transform:rotate(-85deg)}36.25%{transform:rotate(-35deg)}38.75%{transform:rotate(-85deg)}41.25%{transform:rotate(105deg)}43.75%{transform:rotate(105deg)}46.88%{transform:rotate(0deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}93.75%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_b_arm_r{animation:k24 16.00s linear infinite}@keyframes k24{0.00%{transform:rotate(0deg)}12.81%{transform:rotate(70deg)}17.50%{transform:rotate(70deg)}20.00%{transform:rotate(0deg)}21.25%{transform:rotate(55deg)}23.75%{transform:rotate(-55deg)}26.25%{transform:rotate(55deg)}28.75%{transform:rotate(-55deg)}31.25%{transform:rotate(55deg)}33.75%{transform:rotate(-35deg)}36.25%{transform:rotate(-85deg)}38.75%{transform:rotate(-35deg)}41.25%{transform:rotate(105deg)}43.75%{transform:rotate(105deg)}46.88%{transform:rotate(0deg)}56.25%{transform:rotate(-145deg)}90.62%{transform:rotate(-145deg)}93.75%{transform:rotate(0deg)}100.00%{transform:rotate(0deg)}}.m_b_l1{animation:k25 16.00s linear infinite}@keyframes k25{0.00%{transform:none}20.00%{transform:none}21.25%{transform:rotate(36deg)}23.12%{transform:rotate(-36deg)}25.00%{transform:rotate(36deg)}26.88%{transform:rotate(-36deg)}28.75%{transform:rotate(36deg)}30.63%{transform:rotate(-36deg)}32.50%{transform:rotate(36deg)}33.75%{transform:none}93.75%{transform:none}95.00%{transform:rotate(36deg)}96.88%{transform:rotate(-36deg)}98.75%{transform:none}100.00%{transform:none}}.m_b_l2{animation:k26 16.00s linear infinite}@keyframes k26{0.00%{transform:none}20.00%{transform:none}21.25%{transform:rotate(-36deg)}23.12%{transform:rotate(36deg)}25.00%{transform:rotate(-36deg)}26.88%{transform:rotate(36deg)}28.75%{transform:rotate(-36deg)}30.63%{transform:rotate(36deg)}32.50%{transform:rotate(-36deg)}33.75%{transform:none}93.75%{transform:none}95.00%{transform:rotate(-36deg)}96.88%{transform:rotate(36deg)}98.75%{transform:none}100.00%{transform:none}}
 
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {{
+  *, ::before, ::after {
     animation-delay: -10s !important;
     animation-play-state: paused !important;
   }
@@ -98,12 +60,8 @@ text{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',mo
   #nameglow { opacity: 0.42 !important; }
   #lamp_lit { opacity: 1 !important; }
   #lamp_glow { opacity: 0.85 !important; transform: scale(1) !important; }
-  #crown_g { transform: rotate(0deg) !important; }
-  .minion_a { transform: translate(925px,278px) !important; }
-  .minion_b { transform: translate(52.0px,105.0px) scaleX(1) !important; }
-  .m_a_arm_l, .m_a_arm_r { transform: rotate(-155deg) !important; }
-  .m_b_arm_l, .m_b_arm_r { transform: rotate(-145deg) !important; }
   #sw_lever { transform: rotate(38deg) !important; }
+  #crownr { transform: none !important; }
 }
 
 </style>
@@ -111,39 +69,23 @@ text{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',mo
 <rect width="1040" height="320" rx="18" fill="url(#dots)"/>
 <rect width="1040" height="320" rx="18" fill="url(#vig)"/>
 <ellipse id="nameglow" cx="501.5" cy="120" rx="441.5" ry="60" fill="#dba33f" filter="url(#big)" style="opacity:0"/>
-<g id="reflg" mask="url(#reflmask)"><g transform="translate(0,338) scale(1,-1)" opacity=".5" filter="url(#soft)"><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.0,129.0 L140.0,129.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,165.0 L200.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L170.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L230.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M254.0,165.0 L254.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L338.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,129.0 L428.0,129.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L608.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M548.0,120.0 L593.0,120.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,165.0 L773.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M788.0,120.0 L833.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L923.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M863.0,120.0 L908.0,120.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/></g></g>
-<g id="lit" filter="url(#glow)"><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M80.0,129.0 L140.0,129.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,165.0 L200.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L170.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M200.0,75.0 L230.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M254.0,165.0 L254.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M293.0,165.0 L338.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M368.0,129.0 L428.0,129.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M563.0,165.0 L608.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M548.0,120.0 L593.0,120.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,165.0 L773.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M788.0,120.0 L833.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M878.0,165.0 L923.0,165.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M863.0,120.0 L908.0,120.0" stroke="url(#gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g id="reflg" mask="url(#reflmask)"><g transform="translate(0,338) scale(1,-1)" opacity=".5" filter="url(#soft)"><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M80.0,129.0 L140.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,165.0 L200.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,75.0 L170.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,75.0 L230.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M254.0,165.0 L254.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M293.0,165.0 L338.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M368.0,129.0 L428.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M563.0,165.0 L608.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M548.0,120.0 L593.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M773.0,165.0 L773.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M788.0,120.0 L833.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M878.0,165.0 L923.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M863.0,120.0 L908.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/></g></g>
+<g id="lit" filter="url(#glow)"><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M80.0,165.0 L80.0,97.5 L102.5,75.0 L117.5,75.0 L140.0,97.5 L140.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M80.0,129.0 L140.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M80.0,129.0 L140.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M80.0,129.0 L140.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M200.0,165.0 L200.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M200.0,165.0 L200.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,165.0 L200.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M200.0,75.0 L170.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M200.0,75.0 L170.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,75.0 L170.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M200.0,75.0 L230.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M200.0,75.0 L230.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M200.0,75.0 L230.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M254.0,165.0 L254.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M254.0,165.0 L254.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M254.0,165.0 L254.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M293.0,165.0 L278.0,150.0 L278.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M293.0,165.0 L338.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M293.0,165.0 L338.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M293.0,165.0 L338.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M368.0,165.0 L368.0,97.5 L390.5,75.0 L405.5,75.0 L428.0,97.5 L428.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M368.0,129.0 L428.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M368.0,129.0 L428.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M368.0,129.0 L428.0,129.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M458.0,165.0 L458.0,75.0 L503.0,75.0 L518.0,90.0 L518.0,150.0 L503.0,165.0 L458.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M563.0,165.0 L548.0,150.0 L548.0,90.0 L563.0,75.0 L608.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M563.0,165.0 L608.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M563.0,165.0 L608.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M563.0,165.0 L608.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M548.0,120.0 L593.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M548.0,120.0 L593.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M548.0,120.0 L593.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M698.0,165.0 L683.0,150.0 L683.0,90.0 L698.0,75.0 L728.0,75.0 L743.0,90.0 L743.0,150.0 L728.0,165.0 L698.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M773.0,165.0 L773.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M773.0,165.0 L773.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M773.0,165.0 L773.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M773.0,120.0 L788.0,120.0 L833.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M788.0,120.0 L833.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M788.0,120.0 L833.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M788.0,120.0 L833.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M878.0,165.0 L863.0,150.0 L863.0,90.0 L878.0,75.0 L923.0,75.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M878.0,165.0 L923.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M878.0,165.0 L923.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M878.0,165.0 L923.0,165.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/><path d="M863.0,120.0 L908.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#4a3210" stroke-width="14"/><path d="M863.0,120.0 L908.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="url(#gold)" stroke-width="10"/><path d="M863.0,120.0 L908.0,120.0" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke="#fff1c4" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/></g>
 <g mask="url(#namemask)"><rect id="sheen" x="0" y="65" width="200" height="110" fill="url(#shine)" transform="translate(-260 0)"/></g>
-<g id="padsg"><circle cx="140" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="170" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="230" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="278.0" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="338.0" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="428.0" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="608.0" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="593.0" cy="120" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="608.0" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="773.0" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="833.0" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="833.0" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="923.0" cy="75" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="908.0" cy="120" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/><circle cx="923.0" cy="165" r="3.2" fill="#070a14" stroke="#dba33f" stroke-width="1.2"/></g>
+<g id="padsg"><g style="transform-origin:140.0px 165.0px"><circle cx="140.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="140.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="140.0" cy="165.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:170.0px 75.0px"><circle cx="170.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="170.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="170.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:230.0px 75.0px"><circle cx="230.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="230.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="230.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:278.0px 75.0px"><circle cx="278.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="278.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="278.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:338.0px 165.0px"><circle cx="338.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="338.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="338.0" cy="165.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:428.0px 165.0px"><circle cx="428.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="428.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="428.0" cy="165.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:608.0px 75.0px"><circle cx="608.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="608.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="608.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:593.0px 120.0px"><circle cx="593.0" cy="120.0" r="9.5" fill="#4a3210"/><circle cx="593.0" cy="120.0" r="8" fill="url(#gold)"/><circle cx="593.0" cy="120.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:608.0px 165.0px"><circle cx="608.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="608.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="608.0" cy="165.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:773.0px 75.0px"><circle cx="773.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="773.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="773.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:833.0px 75.0px"><circle cx="833.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="833.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="833.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:833.0px 165.0px"><circle cx="833.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="833.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="833.0" cy="165.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:923.0px 75.0px"><circle cx="923.0" cy="75.0" r="9.5" fill="#4a3210"/><circle cx="923.0" cy="75.0" r="8" fill="url(#gold)"/><circle cx="923.0" cy="75.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:908.0px 120.0px"><circle cx="908.0" cy="120.0" r="9.5" fill="#4a3210"/><circle cx="908.0" cy="120.0" r="8" fill="url(#gold)"/><circle cx="908.0" cy="120.0" r="3.4" fill="#070a14"/></g><g style="transform-origin:923.0px 165.0px"><circle cx="923.0" cy="165.0" r="9.5" fill="#4a3210"/><circle cx="923.0" cy="165.0" r="8" fill="url(#gold)"/><circle cx="923.0" cy="165.0" r="3.4" fill="#070a14"/></g></g>
 
-<g id="pcb_ground">
-  <!-- Copper bus bar along floor line -->
-  <line x1="0" y1="278" x2="1040" y2="278" stroke="#523916" stroke-width="4"/>
-  <line x1="0" y1="278" x2="1040" y2="278" stroke="url(#gold)" stroke-width="2"/>
-  <!-- Ladder trace rising up to perch beside A (CLX=52, CLY=105) -->
-  <line x1="52.0" y1="278" x2="52.0" y2="105.0" stroke="url(#gold)" stroke-width="2.5"/>
-  <line x1="42.0" y1="135.0" x2="62.0" y2="135.0" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="42.0" y1="170.0" x2="62.0" y2="170.0" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="42.0" y1="205.0" x2="62.0" y2="205.0" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="42.0" y1="240.0" x2="62.0" y2="240.0" stroke="url(#gold)" stroke-width="1.8"/>
-  <!-- Perch step platform beside A shoulder -->
-  <rect x="36.0" y="105.0" width="32" height="3.5" rx="1.5" fill="url(#gold)" stroke="#4a3210" stroke-width="0.8"/>
-  <circle cx="42.0" cy="106.8" r="1.5" fill="#fff1c4"/>
-  <circle cx="62.0" cy="106.8" r="1.5" fill="#fff1c4"/>
-</g>
-
-
-<g id="crown_g" transform-origin="110px 75px" style="transform:rotate(24deg)">
-  <!-- Golden Crown Base & Jewels -->
-  <path d="M92,74 L88,56 L102,64 L110,49 L118,64 L132,56 L128,74 Z" fill="url(#gold)" stroke="#fff1c4" stroke-width="1.2" stroke-linejoin="round"/>
-  <circle cx="88" cy="56" r="2.8" fill="#fffdf2"/>
-  <circle cx="110" cy="49" r="3.5" fill="#fffdf2"/>
-  <circle cx="132" cy="56" r="2.8" fill="#fffdf2"/>
-  <circle cx="101" cy="69" r="1.8" fill="#e03030"/>
-  <circle cx="110" cy="69" r="2.2" fill="#63c7ff"/>
-  <circle cx="119" cy="69" r="1.8" fill="#e03030"/>
-  <rect x="93" y="72" width="34" height="2.5" rx="1.2" fill="#fff1c4" opacity="0.8"/>
-  <g id="crown_sparks" filter="url(#glow)" transform="translate(110,61)">
+<g transform="translate(110.0,61)">
+  <g id="crownr">
+    <g id="crown" filter="url(#glow)">
+      <path d="M-21,0 L-25,-21 L-11,-10 L0,-26 L11,-10 L25,-21 L21,0 Z" fill="url(#gold)" stroke="#4a3210" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M-19,-3.5 H19" stroke="#fff1c4" stroke-width="1.8" stroke-linecap="round" opacity=".8"/>
+      <circle cx="-25" cy="-21" r="3.5" fill="#fff1c4" stroke="#4a3210" stroke-width="1"/>
+      <circle cx="0" cy="-26" r="3.5" fill="#fff1c4" stroke="#4a3210" stroke-width="1"/>
+      <circle cx="25" cy="-21" r="3.5" fill="#fff1c4" stroke="#4a3210" stroke-width="1"/>
+    </g>
+  </g>
+  <!-- Spark burst when crown is pushed straight -->
+  <g id="crown_sparks" filter="url(#glow)" transform="translate(0,-12)">
     <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#fffdf2" transform="translate(-28,-14) scale(0.65)"/>
     <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#fffdf2" transform="translate(0,-24) scale(0.85)"/>
     <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#fffdf2" transform="translate(28,-14) scale(0.65)"/>
@@ -152,23 +94,32 @@ text{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',mo
   </g>
 </g>
 
+<!-- Dramatic Bonk Impact Flash Starburst on B's head -->
+<g id="bonk_star" filter="url(#glow)">
+  <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffffff" transform="scale(2.2)"/>
+  <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffd426" transform="scale(1.5) rotate(22)"/>
+  <circle cx="0" cy="0" r="7" fill="#fff"/>
+</g>
 
 <g id="switch_station">
-  <!-- Power conduit from switch to name: runs from SWX=975 left to LXS[9] + glyph_w('E')=923 -->
-  <path d="M975,165 H923.0" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
-  <path d="M975,210 V165" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
-  <path id="wire_spark" d="M975,210 V165 H863.0" stroke="#fffdf2" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="20 140" pathLength="100"/>
+  <!-- Power conduit from switch to name -->
+  <path d="M975,173 V210" stroke="url(#gold)" stroke-width="3.5"/>
+  <path d="M975,173 H923.0" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
+  <path id="wire_spark" d="M975,210 V173 H923.0" stroke="#fffdf2" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="20 140" pathLength="100"/>
 
-  <!-- Substantial Mechanical Switch Box -->
-  <rect x="957" y="210" width="36" height="68" rx="5" fill="#121724" stroke="#2a354d" stroke-width="2"/>
-  <rect x="961" y="214" width="28" height="60" rx="3" fill="#182030" stroke="#0e131d" stroke-width="1.2"/>
-  <!-- Corner mounting screws -->
-  <circle cx="963" cy="217" r="1.5" fill="#52607a"/>
-  <circle cx="987" cy="217" r="1.5" fill="#52607a"/>
-  <circle cx="963" cy="271" r="1.5" fill="#52607a"/>
-  <circle cx="987" cy="271" r="1.5" fill="#52607a"/>
+  <!-- Switch Box Casing (heavy industrial enclosure) -->
+  <rect x="953" y="208" width="44" height="68" rx="6" fill="#161c2e" stroke="#dba33f" stroke-width="2"/>
+  <rect x="957" y="212" width="36" height="60" rx="4" fill="#0d111d"/>
+  <!-- Corner bolts -->
+  <circle cx="958" cy="213" r="1.8" fill="#fff1c4"/>
+  <circle cx="992" cy="213" r="1.8" fill="#fff1c4"/>
+  <circle cx="958" cy="271" r="1.8" fill="#fff1c4"/>
+  <circle cx="992" cy="271" r="1.8" fill="#fff1c4"/>
 
-  <!-- Lever slot and pivot -->
+  <!-- Electrical warning badge -->
+  <path d="M969,226 L977,220 L975,227 L981,227 L973,235 L975,229 Z" fill="#ffd426"/>
+
+  <!-- Mechanical Lever slot and pivot -->
   <rect x="971" y="232" width="8" height="30" rx="3" fill="#05070d"/>
   <circle cx="975" cy="245" r="5" fill="#364057" stroke="#1d2433" stroke-width="1.2"/>
   <circle cx="975" cy="245" r="2.2" fill="#fff1c4"/>
@@ -198,206 +149,418 @@ text{font-family:'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',mo
       <!-- Radiant Light Rays -->
       <g stroke="#ffd952" stroke-width="2" stroke-linecap="round" opacity="0.75">
         <line x1="975" y1="126" x2="975" y2="114"/>
-        <line x1="993" y1="133" x2="1002" y2="124"/>
+        <line x1="992" y1="133" x2="1001" y2="124"/>
         <line x1="999" y1="150" x2="1011" y2="150"/>
-        <line x1="993" y1="167" x2="1002" y2="176"/>
-        <line x1="957" y1="133" x2="948" y2="124"/>
+        <line x1="992" y1="167" x2="1001" y2="176"/>
+        <line x1="958" y1="133" x2="949" y2="124"/>
         <line x1="951" y1="150" x2="939" y2="150"/>
-        <line x1="957" y1="167" x2="948" y2="176"/>
+        <line x1="958" y1="167" x2="949" y2="176"/>
       </g>
-      <!-- Brilliant Glowing Core -->
-      <circle cx="975" cy="150" r="18" fill="url(#lamp_core)" stroke="#fffdf0" stroke-width="2"/>
-      <circle cx="970" cy="145" r="4.5" fill="#ffffff" opacity="0.8"/>
-      <!-- Soft Radial Bloom halo -->
-      <circle id="lamp_glow" cx="975" cy="150" r="48" fill="url(#lamp_bloom)" style="transform-origin:975px 150px"/>
+      <!-- Brilliant glass core -->
+      <circle cx="975" cy="150" r="18" fill="url(#lamp_core)" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="971" cy="144" r="5" fill="#ffffff" opacity="0.75"/>
     </g>
+    <!-- Giant soft radial bloom flare -->
+    <circle id="lamp_glow" cx="975" cy="150" r="55" fill="#ffcb36" filter="url(#big)" style="transform-origin:975px 150px"/>
   </g>
 </g>
 
 
-<!-- Dramatic Bonk Impact Flash Starburst on B's head -->
-<g id="bonk_star" filter="url(#glow)">
-  <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffffff" transform="scale(2.4)"/>
-  <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffd426" transform="scale(1.6) rotate(22)"/>
-  <circle cx="0" cy="0" r="7" fill="#fff"/>
+
+
+<g id="pcb_ground">
+  <!-- Ladder trace rising up to perch beside A (CLX=52, CLY=105) -->
+  <line x1="52.0" y1="278" x2="52.0" y2="105.0" stroke="url(#gold)" stroke-width="2.5"/>
+  <line x1="42.0" y1="140.0" x2="62.0" y2="140.0" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="42.0" y1="175.0" x2="62.0" y2="175.0" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="42.0" y1="210.0" x2="62.0" y2="210.0" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="42.0" y1="245.0" x2="62.0" y2="245.0" stroke="url(#gold)" stroke-width="1.8"/>
+  <!-- Perch step platform beside A shoulder -->
+  <rect x="36.0" y="105.0" width="32" height="3.5" rx="1.5" fill="url(#gold)" stroke="#4a3210" stroke-width="0.8"/>
+  <!-- Main ground copper bus -->
+  <line x1="30" y1="278" x2="1010" y2="278" stroke="#4a3210" stroke-width="6"/>
+  <line x1="30" y1="278" x2="1010" y2="278" stroke="url(#gold)" stroke-width="3"/>
+  <line x1="30" y1="277" x2="1010" y2="277" stroke="#fff1c4" stroke-width="0.8" opacity="0.6"/>
+  <!-- Floor mounting via pads -->
+  <circle cx="80" cy="296" r="4" fill="#4a3210"/><circle cx="80" cy="296" r="2.8" fill="url(#gold)"/><circle cx="80" cy="296" r="1.2" fill="#070a14"/><circle cx="175" cy="296" r="4" fill="#4a3210"/><circle cx="175" cy="296" r="2.8" fill="url(#gold)"/><circle cx="175" cy="296" r="1.2" fill="#070a14"/><circle cx="270" cy="296" r="4" fill="#4a3210"/><circle cx="270" cy="296" r="2.8" fill="url(#gold)"/><circle cx="270" cy="296" r="1.2" fill="#070a14"/><circle cx="365" cy="296" r="4" fill="#4a3210"/><circle cx="365" cy="296" r="2.8" fill="url(#gold)"/><circle cx="365" cy="296" r="1.2" fill="#070a14"/><circle cx="460" cy="296" r="4" fill="#4a3210"/><circle cx="460" cy="296" r="2.8" fill="url(#gold)"/><circle cx="460" cy="296" r="1.2" fill="#070a14"/><circle cx="555" cy="296" r="4" fill="#4a3210"/><circle cx="555" cy="296" r="2.8" fill="url(#gold)"/><circle cx="555" cy="296" r="1.2" fill="#070a14"/><circle cx="650" cy="296" r="4" fill="#4a3210"/><circle cx="650" cy="296" r="2.8" fill="url(#gold)"/><circle cx="650" cy="296" r="1.2" fill="#070a14"/><circle cx="745" cy="296" r="4" fill="#4a3210"/><circle cx="745" cy="296" r="2.8" fill="url(#gold)"/><circle cx="745" cy="296" r="1.2" fill="#070a14"/><circle cx="840" cy="296" r="4" fill="#4a3210"/><circle cx="840" cy="296" r="2.8" fill="url(#gold)"/><circle cx="840" cy="296" r="1.2" fill="#070a14"/><circle cx="935" cy="296" r="4" fill="#4a3210"/><circle cx="935" cy="296" r="2.8" fill="url(#gold)"/><circle cx="935" cy="296" r="1.2" fill="#070a14"/>
+  <line x1="40" y1="296" x2="1000" y2="296" stroke="#151c33" stroke-width="1.5" stroke-dasharray="6 8"/>
 </g>
 
+<g mask="url(#botmask)">
+  <g transform="translate(0,560) scale(1,-1)" opacity=".3" filter="url(#soft)">
+    
+<g class="minion_a" transform="translate(925,278)">
+  <g class="minion_a_inner">
+    <!-- Hair strands -->
+    <path d="M-12,-83 C-6,-91 -2,-87 0,-84 C2,-87 6,-91 12,-83" stroke="#15171d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M-7,-85 C-2,-92 2,-92 7,-85" stroke="#15171d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Body capsule (84px tall, 42px wide) -->
+    <rect x="-21" y="-84" width="42" height="84" rx="21" fill="url(#minion_body_a)"/>
+    <!-- 3D Shading & Highlight -->
+    <path d="M-17,-78 C-19,-60 -19,-20 -17,-5" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M17,-78 C19,-60 19,-20 17,-5" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
 
-<g class="minion_a">
-  <g class="minion_a_inner" style="transform-origin: 0px 0px">
-    <!-- Shadow under feet -->
-    <ellipse cx="0" cy="0" rx="22" ry="4.5" fill="#000000" opacity="0.65"/>
+    <!-- Mouth -->
+    <path d="M-8,-30 Q0,-24 8,-30" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
 
-    <!-- Black Shoes -->
-    <path d="M-13,-2 C-13,-7 -20,-7 -20,-2 C-20,1 -12,1 -13,-2 Z" fill="#11151c"/>
-    <path d="M13,-2 C13,-7 20,-7 20,-2 C20,1 12,1 13,-2 Z" fill="#11151c"/>
+    <!-- Goggle strap -->
+    <rect x="-22" y="-60" width="44" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-22" y1="-55" x2="22" y2="-55" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
 
-    <!-- Left Arm & Heavy Wrench (swings left at B) -->
-    <g class="m_a_arm_l" style="transform-origin: -21px -50px">
-      <!-- Arm -->
-      <path d="M-21,-50 Q-32,-42 -30,-28" stroke="#f5c227" stroke-width="8" stroke-linecap="round" fill="none"/>
-      <!-- Black Glove -->
-      <circle cx="-30" cy="-27" r="5.5" fill="#11151c"/>
-      <!-- Heavy Industrial Wrench -->
-      <g transform="translate(-30,-27)">
-        <rect x="-3" y="-2" width="6" height="30" rx="1.5" fill="url(#silver_rim)" stroke="#333" stroke-width="0.8"/>
-        <!-- Wrench Head -->
-        <path d="M-9,26 L9,26 L9,38 L3,38 L3,31 L-3,31 L-3,38 L-9,38 Z" fill="url(#silver_rim)" stroke="#333" stroke-width="0.8"/>
-      </g>
-    </g>
-
-    <!-- Right Arm (pulls switch lever) -->
-    <g class="m_a_arm_r" style="transform-origin: 21px -50px">
-      <!-- Arm -->
-      <path d="M21,-50 Q32,-42 30,-28" stroke="#f5c227" stroke-width="8" stroke-linecap="round" fill="none"/>
-      <!-- Black Glove -->
-      <circle cx="30" cy="-27" r="5.5" fill="#11151c"/>
-    </g>
-
-    <!-- Capsule Yellow Body (Stuart: height=84, width=44) -->
-    <rect x="-22" y="-76" width="44" height="66" rx="22" fill="url(#minion_body_a)"/>
-
-    <!-- Blue Denim Overalls -->
-    <path d="M-22,-28 Q0,-22 22,-28 L22,-8 C22,0 12,2 0,2 C-12,2 -22,0 -22,-8 Z" fill="url(#overall_blue)"/>
-    <!-- Bib front -->
-    <rect x="-14" y="-40" width="28" height="18" rx="2" fill="url(#overall_blue)"/>
-    <!-- Shoulder Straps with Silver Buttons -->
-    <path d="M-20,-48 L-13,-36" stroke="#244d85" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="-13" cy="-36" r="1.8" fill="#ced8e6"/>
-    <circle cx="-13" cy="-36" r="0.8" fill="#111"/>
-    <path d="M20,-48 L13,-36" stroke="#244d85" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="13" cy="-36" r="1.8" fill="#ced8e6"/>
-    <circle cx="13" cy="-36" r="0.8" fill="#111"/>
-    <!-- Center Pocket with Gru Emblem -->
-    <path d="M-7,-30 H7 V-20 Q7,-17 0,-17 Q-7,-17 -7,-20 Z" fill="#1a3d6e" stroke="#142e54" stroke-width="0.8"/>
-    <circle cx="0" cy="-24" r="3.2" fill="#11151c"/>
-    <polygon points="0,-25.5 1.8,-23 -1.8,-23" fill="#ced8e6"/>
-
-    <!-- Goggle Strap -->
-    <rect x="-22.5" y="-64" width="45" height="7.5" fill="#11151c" rx="1.5"/>
-
-    <!-- Single Big Goggle (Stuart) -->
-    <g transform="translate(0, -60)">
-      <circle cx="0" cy="0" r="15.5" fill="url(#silver_rim)" stroke="#384353" stroke-width="1"/>
-      <circle cx="0" cy="0" r="12" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="10.5" fill="#f8f9fa"/>
-      <!-- Pupil with animation -->
+    <!-- Single Goggle (Stuart) -->
+    <g transform="translate(0, -55)">
+      <!-- Outer silver frame -->
+      <circle cx="0" cy="0" r="15.5" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.5"/>
+      <circle cx="-14.2" cy="0" r="1.4" fill="#222"/>
+      <circle cx="14.2" cy="0" r="1.4" fill="#222"/>
+      <!-- Inner bevel -->
+      <circle cx="0" cy="0" r="11.5" fill="#1b1d22"/>
+      <!-- Sclera -->
+      <circle cx="0" cy="0" r="10.2" fill="#ffffff"/>
+      <!-- Pupil & Iris -->
       <g class="m_a_pupil">
-        <!-- Brown Iris -->
-        <circle cx="0" cy="0" r="5.2" fill="#6d411b"/>
-        <!-- Pupil -->
-        <circle cx="0" cy="0" r="2.8" fill="#000000"/>
-        <!-- Catchlight shine -->
-        <circle cx="1.5" cy="-1.5" r="1.4" fill="#ffffff"/>
+        <circle cx="0" cy="0" r="5.2" fill="#7d4212" stroke="#4a2406" stroke-width="0.8"/>
+        <circle cx="0" cy="0" r="3.0" fill="#111111"/>
+        <circle cx="1.8" cy="-1.8" r="1.6" fill="#ffffff"/>
+        <circle cx="-1.5" cy="2.0" r="0.8" fill="#ffffff" opacity="0.6"/>
       </g>
-      <!-- Glass reflection highlight -->
-      <path d="M-7,-7 A10,10 0 0,1 7,-7" stroke="#ffffff" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <!-- Eyelid for blinks -->
+      <path class="m_a_lid" d="M-10.2,-4 Q0,2 10.2,-4 V-11 H-10.2 Z" fill="#ffd426"/>
     </g>
 
-    <!-- Parted Strands of Hair -->
-    <path d="M-6,-76 Q-4,-83 -8,-86" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M-2,-76 Q0,-84 -3,-88" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M2,-76 Q0,-84 3,-88" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M6,-76 Q4,-83 8,-86" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <!-- Denim Overalls -->
+    <path d="M-21,-28 C-21,-12 -16,0 0,0 C16,0 21,-12 21,-28 L21,-8 C21,0 14,0 0,0 C-14,0 -21,0 -21,-8 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-19,-40 L-12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <path d="M19,-40 L12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <circle cx="-12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <circle cx="12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-9,-22 H9 V-13 Q9,-7 0,-7 Q-9,-7 -9,-13 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.2"/>
+    <circle cx="0" cy="-14" r="3.4" fill="#152233"/>
+    <circle cx="0" cy="-14" r="2.2" fill="#1e4475"/>
+    <path d="M-0.6,-15.5 H0.8 V-12.5 H-0.4" stroke="#152233" stroke-width="0.9" fill="none"/>
 
-    <!-- Smug / Cheerful Mouth -->
-    <path d="M-8,-44 Q0,-38 8,-44" stroke="#4a3000" stroke-width="2" stroke-linecap="round" fill="none"/>
-  </g>
-</g>
-
-
-<g class="minion_b">
-  <g class="minion_b_inner" style="transform-origin: 0px 0px">
-    <!-- Shadow under feet -->
-    <ellipse cx="0" cy="0" rx="20" ry="4" fill="#000000" opacity="0.65"/>
-
-    <!-- Running Legs -->
-    <g class="m_b_l1" style="transform-origin: -8px -6px">
-      <path d="M-8,-4 C-8,-9 -15,-9 -15,-4 C-15,-1 -7,-1 -8,-4 Z" fill="#11151c"/>
+    <!-- Legs & Shoes -->
+    <g class="m_a_l1">
+      <rect x="-15" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M-18,7 H-4 C-4,4 -7,3 -10,3 C-15,3 -18,4 -18,7 Z" fill="#14161a"/>
+      <line x1="-18" y1="7" x2="-4" y2="7" stroke="#2c303a" stroke-width="1.2"/>
     </g>
-    <g class="m_b_l2" style="transform-origin: 8px -6px">
-      <path d="M8,-4 C8,-9 15,-9 15,-4 C15,-1 7,-1 8,-4 Z" fill="#11151c"/>
+    <g class="m_a_l2">
+      <rect x="5" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M2,7 H16 C16,4 13,3 10,3 C5,3 2,4 2,7 Z" fill="#14161a"/>
+      <line x1="2" y1="7" x2="16" y2="7" stroke="#2c303a" stroke-width="1.2"/>
     </g>
 
-    <!-- Left Arm -->
-    <g class="m_b_arm_l" style="transform-origin: -21px -40px">
-      <path d="M-21,-40 Q-30,-32 -26,-18" stroke="#f5c227" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <circle cx="-26" cy="-17" r="5" fill="#11151c"/>
+    <!-- Left Arm (with CARTOON WRENCH) -->
+    <g class="m_a_arm_l" style="transform-origin: -18px -32px">
+      <path d="M-18,-32 Q-28,-22 -26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <!-- Glove -->
+      <circle cx="-26" cy="-8" r="5.2" fill="#15171d"/>
+      <!-- Heavy Wrench / Mallet -->
+      <g transform="translate(-26, -8) rotate(30)">
+        <rect x="-2.5" y="-22" width="5" height="28" rx="2" fill="#717a8c" stroke="#353d4c" stroke-width="1"/>
+        <!-- Wrench Head -->
+        <path d="M-8,-32 H8 V-22 C8,-20 4,-19 0,-19 C-4,-19 -8,-20 -8,-22 Z" fill="#475467" stroke="#1d2939" stroke-width="1.4"/>
+        <rect x="-3" y="-32" width="6" height="8" rx="1" fill="#1d2939"/>
+      </g>
     </g>
 
     <!-- Right Arm -->
-    <g class="m_b_arm_r" style="transform-origin: 21px -40px">
-      <path d="M21,-40 Q30,-32 26,-18" stroke="#f5c227" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <circle cx="26" cy="-17" r="5" fill="#11151c"/>
-    </g>
-
-    <!-- Capsule Yellow Body (Bob: height=68, width=44) -->
-    <rect x="-22" y="-64" width="44" height="56" rx="22" fill="url(#minion_body_b)"/>
-
-    <!-- Blue Denim Overalls -->
-    <path d="M-22,-24 Q0,-18 22,-24 L22,-6 C22,0 12,2 0,2 C-12,2 -22,0 -22,-6 Z" fill="url(#overall_blue)"/>
-    <!-- Bib front -->
-    <rect x="-13" y="-34" width="26" height="15" rx="2" fill="url(#overall_blue)"/>
-    <!-- Straps -->
-    <path d="M-19,-40 L-12,-30" stroke="#244d85" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="-12" cy="-30" r="1.6" fill="#ced8e6"/>
-    <path d="M19,-40 L12,-30" stroke="#244d85" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="12" cy="-30" r="1.6" fill="#ced8e6"/>
-    <!-- Front Pocket -->
-    <path d="M-6,-24 H6 V-16 Q6,-13 0,-13 Q-6,-13 -6,-16 Z" fill="#1a3d6e" stroke="#142e54" stroke-width="0.8"/>
-    <circle cx="0" cy="-19" r="2.6" fill="#11151c"/>
-
-    <!-- Goggle Strap -->
-    <rect x="-22.5" y="-55" width="45" height="7" fill="#11151c" rx="1.5"/>
-
-    <!-- Dual Goggles (Bob: Heterochromia - Green Left, Brown Right) -->
-    <!-- Left Eye (Green iris) -->
-    <g transform="translate(-10, -51)">
-      <circle cx="0" cy="0" r="11" fill="url(#silver_rim)" stroke="#384353" stroke-width="0.8"/>
-      <circle cx="0" cy="0" r="8.5" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="7.5" fill="#f8f9fa"/>
-      <g class="m_b_pupil">
-        <circle cx="0" cy="0" r="3.8" fill="#387a32"/>
-        <circle cx="0" cy="0" r="2" fill="#000000"/>
-        <circle cx="1" cy="-1" r="1" fill="#ffffff"/>
-      </g>
-    </g>
-    <!-- Right Eye (Brown iris) -->
-    <g transform="translate(10, -51)">
-      <circle cx="0" cy="0" r="11" fill="url(#silver_rim)" stroke="#384353" stroke-width="0.8"/>
-      <circle cx="0" cy="0" r="8.5" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="7.5" fill="#f8f9fa"/>
-      <g class="m_b_pupil">
-        <circle cx="0" cy="0" r="3.8" fill="#6d411b"/>
-        <circle cx="0" cy="0" r="2" fill="#000000"/>
-        <circle cx="1" cy="-1" r="1" fill="#ffffff"/>
-      </g>
-    </g>
-
-    <!-- Sprout Hair Strands -->
-    <path d="M-2,-64 Q-3,-70 -6,-72" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M0,-64 Q0,-71 0,-74" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M2,-64 Q3,-70 6,-72" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-
-    <!-- Mouth -->
-    <path d="M-6,-37 Q0,-32 6,-37" stroke="#4a3000" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-
-    <!-- Large Bump / Knot on head (bonk reaction) -->
-    <g class="m_b_bump" style="transform-origin: 0px -64px">
-      <ellipse cx="-2" cy="-67" rx="8" ry="6" fill="#f05454" stroke="#991b1b" stroke-width="1"/>
-      <path d="M-6,-68 Q-2,-70 2,-68" stroke="#ffe0e0" stroke-width="1" fill="none"/>
-      <!-- Band-aid / cross -->
-      <line x1="-5" y1="-67" x2="1" y2="-67" stroke="#fff" stroke-width="1.2"/>
-      <line x1="-2" y1="-70" x2="-2" y2="-64" stroke="#fff" stroke-width="1.2"/>
-    </g>
-
-    <!-- Orbiting Comic Stars (bonk reaction) -->
-    <g class="m_b_stars" style="transform-origin: 0px -74px">
-      <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffd426" stroke="#fff" stroke-width="0.8" transform="translate(-18,-74) scale(0.65)"/>
-      <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffd426" stroke="#fff" stroke-width="0.8" transform="translate(18,-74) scale(0.65)"/>
-      <path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#ffec6e" stroke="#fff" stroke-width="0.8" transform="translate(0,-86) scale(0.75)"/>
+    <g class="m_a_arm_r" style="transform-origin: 18px -32px">
+      <path d="M18,-32 Q28,-22 26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <circle cx="26" cy="-8" r="5.2" fill="#15171d"/>
     </g>
   </g>
 </g>
+
+    
+<g class="minion_b" transform="translate(865,278)">
+  <g class="minion_b_inner">
+    <!-- Hair sprouts -->
+    <path d="M-4,-67 V-75 M0,-67 V-77 M4,-67 V-75" stroke="#15171d" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- Large Bump / Knot on head (bonk reaction) -->
+    <g class="m_b_bump" style="transform-origin: 0px -68px">
+      <path d="M-9,-68 Q0,-90 9,-68 Z" fill="#ff6b6b" stroke="#d43b3b" stroke-width="1.4"/>
+      <line x1="-4" y1="-78" x2="4" y2="-78" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="-3" y1="-73" x2="3" y2="-73" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+    </g>
+
+    <!-- Bold Spinning Comic Stars -->
+    <g class="m_b_stars" style="transform-origin: 0px -78px">
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(-20,-75) scale(0.9)"/>
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(20,-72) scale(1.0)"/>
+      <path d="M0,-10 L2.5,-2.5 L10,0 L2.5,2.5 L0,10 L-2.5,2.5 L-10,0 L-2.5,-2.5 Z" fill="#ffffff" stroke="#c99700" stroke-width="1" transform="translate(0,-88) scale(0.8)"/>
+    </g>
+
+    <!-- Body capsule (68px tall, 46px wide) -->
+    <rect x="-23" y="-68" width="46" height="68" rx="23" fill="url(#minion_body_b)"/>
+    <path d="M-18,-62 C-20,-48 -20,-18 -18,-4" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M18,-62 C20,-48 20,-18 18,-4" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
+
+    <!-- Mouth -->
+    <path d="M-8,-24 Q0,-16 8,-24" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Goggle strap -->
+    <rect x="-24" y="-48" width="48" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-24" y1="-43" x2="24" y2="-43" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+    <!-- Two Goggles (Bob: Heterochromia) -->
+    <!-- Left Goggle (Green Eye) -->
+    <g transform="translate(-8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="-9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#2e7d32" stroke="#1b4d1f" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+    <!-- Right Goggle (Brown Eye) -->
+    <g transform="translate(8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#7d4212" stroke="#4a2406" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+
+    <!-- Overalls -->
+    <path d="M-23,-24 C-23,-10 -18,0 0,0 C18,0 23,-10 23,-24 L23,-6 C23,0 16,0 0,0 C-16,0 -23,0 -23,-6 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-21,-33 L-13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M21,-33 L13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="-13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <circle cx="13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-8,-18 H8 V-10 Q8,-5 0,-5 Q-8,-5 -8,-10 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.1"/>
+    <circle cx="0" cy="-11" r="3.0" fill="#152233"/>
+    <circle cx="0" cy="-11" r="1.8" fill="#1e4475"/>
+
+    <!-- Legs & Shoes -->
+    <g class="m_b_l1" style="transform-origin: -11px 0px">
+      <rect x="-16" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M-19,6 H-5 C-5,3.5 -8,2.5 -11,2.5 C-16,2.5 -19,3.5 -19,6 Z" fill="#14161a"/>
+      <line x1="-19" y1="6" x2="-5" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+    <g class="m_b_l2" style="transform-origin: 11px 0px">
+      <rect x="6" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M3,6 H17 C17,3.5 14,2.5 11,2.5 C6,2.5 3,3.5 3,6 Z" fill="#14161a"/>
+      <line x1="3" y1="6" x2="17" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+
+    <!-- Arms -->
+    <g class="m_b_arm_l" style="transform-origin: -19px -26px">
+      <path d="M-19,-26 Q-28,-16 -24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="-24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+    <g class="m_b_arm_r" style="transform-origin: 19px -26px">
+      <path d="M19,-26 Q28,-16 24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+  </g>
+</g>
+
+  </g>
+</g>
+
+<g class="minion_a" transform="translate(925,278)">
+  <g class="minion_a_inner">
+    <!-- Hair strands -->
+    <path d="M-12,-83 C-6,-91 -2,-87 0,-84 C2,-87 6,-91 12,-83" stroke="#15171d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M-7,-85 C-2,-92 2,-92 7,-85" stroke="#15171d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Body capsule (84px tall, 42px wide) -->
+    <rect x="-21" y="-84" width="42" height="84" rx="21" fill="url(#minion_body_a)"/>
+    <!-- 3D Shading & Highlight -->
+    <path d="M-17,-78 C-19,-60 -19,-20 -17,-5" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M17,-78 C19,-60 19,-20 17,-5" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
+
+    <!-- Mouth -->
+    <path d="M-8,-30 Q0,-24 8,-30" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Goggle strap -->
+    <rect x="-22" y="-60" width="44" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-22" y1="-55" x2="22" y2="-55" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+    <!-- Single Goggle (Stuart) -->
+    <g transform="translate(0, -55)">
+      <!-- Outer silver frame -->
+      <circle cx="0" cy="0" r="15.5" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.5"/>
+      <circle cx="-14.2" cy="0" r="1.4" fill="#222"/>
+      <circle cx="14.2" cy="0" r="1.4" fill="#222"/>
+      <!-- Inner bevel -->
+      <circle cx="0" cy="0" r="11.5" fill="#1b1d22"/>
+      <!-- Sclera -->
+      <circle cx="0" cy="0" r="10.2" fill="#ffffff"/>
+      <!-- Pupil & Iris -->
+      <g class="m_a_pupil">
+        <circle cx="0" cy="0" r="5.2" fill="#7d4212" stroke="#4a2406" stroke-width="0.8"/>
+        <circle cx="0" cy="0" r="3.0" fill="#111111"/>
+        <circle cx="1.8" cy="-1.8" r="1.6" fill="#ffffff"/>
+        <circle cx="-1.5" cy="2.0" r="0.8" fill="#ffffff" opacity="0.6"/>
+      </g>
+      <!-- Eyelid for blinks -->
+      <path class="m_a_lid" d="M-10.2,-4 Q0,2 10.2,-4 V-11 H-10.2 Z" fill="#ffd426"/>
+    </g>
+
+    <!-- Denim Overalls -->
+    <path d="M-21,-28 C-21,-12 -16,0 0,0 C16,0 21,-12 21,-28 L21,-8 C21,0 14,0 0,0 C-14,0 -21,0 -21,-8 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-19,-40 L-12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <path d="M19,-40 L12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <circle cx="-12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <circle cx="12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-9,-22 H9 V-13 Q9,-7 0,-7 Q-9,-7 -9,-13 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.2"/>
+    <circle cx="0" cy="-14" r="3.4" fill="#152233"/>
+    <circle cx="0" cy="-14" r="2.2" fill="#1e4475"/>
+    <path d="M-0.6,-15.5 H0.8 V-12.5 H-0.4" stroke="#152233" stroke-width="0.9" fill="none"/>
+
+    <!-- Legs & Shoes -->
+    <g class="m_a_l1">
+      <rect x="-15" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M-18,7 H-4 C-4,4 -7,3 -10,3 C-15,3 -18,4 -18,7 Z" fill="#14161a"/>
+      <line x1="-18" y1="7" x2="-4" y2="7" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+    <g class="m_a_l2">
+      <rect x="5" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M2,7 H16 C16,4 13,3 10,3 C5,3 2,4 2,7 Z" fill="#14161a"/>
+      <line x1="2" y1="7" x2="16" y2="7" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+
+    <!-- Left Arm (with CARTOON WRENCH) -->
+    <g class="m_a_arm_l" style="transform-origin: -18px -32px">
+      <path d="M-18,-32 Q-28,-22 -26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <!-- Glove -->
+      <circle cx="-26" cy="-8" r="5.2" fill="#15171d"/>
+      <!-- Heavy Wrench / Mallet -->
+      <g transform="translate(-26, -8) rotate(30)">
+        <rect x="-2.5" y="-22" width="5" height="28" rx="2" fill="#717a8c" stroke="#353d4c" stroke-width="1"/>
+        <!-- Wrench Head -->
+        <path d="M-8,-32 H8 V-22 C8,-20 4,-19 0,-19 C-4,-19 -8,-20 -8,-22 Z" fill="#475467" stroke="#1d2939" stroke-width="1.4"/>
+        <rect x="-3" y="-32" width="6" height="8" rx="1" fill="#1d2939"/>
+      </g>
+    </g>
+
+    <!-- Right Arm -->
+    <g class="m_a_arm_r" style="transform-origin: 18px -32px">
+      <path d="M18,-32 Q28,-22 26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <circle cx="26" cy="-8" r="5.2" fill="#15171d"/>
+    </g>
+  </g>
+</g>
+
+
+<g class="minion_b" transform="translate(865,278)">
+  <g class="minion_b_inner">
+    <!-- Hair sprouts -->
+    <path d="M-4,-67 V-75 M0,-67 V-77 M4,-67 V-75" stroke="#15171d" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- Large Bump / Knot on head (bonk reaction) -->
+    <g class="m_b_bump" style="transform-origin: 0px -68px">
+      <path d="M-9,-68 Q0,-90 9,-68 Z" fill="#ff6b6b" stroke="#d43b3b" stroke-width="1.4"/>
+      <line x1="-4" y1="-78" x2="4" y2="-78" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="-3" y1="-73" x2="3" y2="-73" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+    </g>
+
+    <!-- Bold Spinning Comic Stars -->
+    <g class="m_b_stars" style="transform-origin: 0px -78px">
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(-20,-75) scale(0.9)"/>
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(20,-72) scale(1.0)"/>
+      <path d="M0,-10 L2.5,-2.5 L10,0 L2.5,2.5 L0,10 L-2.5,2.5 L-10,0 L-2.5,-2.5 Z" fill="#ffffff" stroke="#c99700" stroke-width="1" transform="translate(0,-88) scale(0.8)"/>
+    </g>
+
+    <!-- Body capsule (68px tall, 46px wide) -->
+    <rect x="-23" y="-68" width="46" height="68" rx="23" fill="url(#minion_body_b)"/>
+    <path d="M-18,-62 C-20,-48 -20,-18 -18,-4" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M18,-62 C20,-48 20,-18 18,-4" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
+
+    <!-- Mouth -->
+    <path d="M-8,-24 Q0,-16 8,-24" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Goggle strap -->
+    <rect x="-24" y="-48" width="48" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-24" y1="-43" x2="24" y2="-43" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+    <!-- Two Goggles (Bob: Heterochromia) -->
+    <!-- Left Goggle (Green Eye) -->
+    <g transform="translate(-8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="-9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#2e7d32" stroke="#1b4d1f" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+    <!-- Right Goggle (Brown Eye) -->
+    <g transform="translate(8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#7d4212" stroke="#4a2406" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+
+    <!-- Overalls -->
+    <path d="M-23,-24 C-23,-10 -18,0 0,0 C18,0 23,-10 23,-24 L23,-6 C23,0 16,0 0,0 C-16,0 -23,0 -23,-6 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-21,-33 L-13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M21,-33 L13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="-13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <circle cx="13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-8,-18 H8 V-10 Q8,-5 0,-5 Q-8,-5 -8,-10 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.1"/>
+    <circle cx="0" cy="-11" r="3.0" fill="#152233"/>
+    <circle cx="0" cy="-11" r="1.8" fill="#1e4475"/>
+
+    <!-- Legs & Shoes -->
+    <g class="m_b_l1" style="transform-origin: -11px 0px">
+      <rect x="-16" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M-19,6 H-5 C-5,3.5 -8,2.5 -11,2.5 C-16,2.5 -19,3.5 -19,6 Z" fill="#14161a"/>
+      <line x1="-19" y1="6" x2="-5" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+    <g class="m_b_l2" style="transform-origin: 11px 0px">
+      <rect x="6" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M3,6 H17 C17,3.5 14,2.5 11,2.5 C6,2.5 3,3.5 3,6 Z" fill="#14161a"/>
+      <line x1="3" y1="6" x2="17" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+
+    <!-- Arms -->
+    <g class="m_b_arm_l" style="transform-origin: -19px -26px">
+      <path d="M-19,-26 Q-28,-16 -24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="-24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+    <g class="m_b_arm_r" style="transform-origin: 19px -26px">
+      <path d="M19,-26 Q28,-16 24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+  </g>
+</g>
+
 
 </svg>

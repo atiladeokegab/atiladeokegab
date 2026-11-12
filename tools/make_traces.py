@@ -36,9 +36,6 @@ for a, b in zip(NAME, NAME[1:] + ' '):
     if a == ' ': name_w += SPACE - GAP; continue
     name_w += glyph_w(a) + (gap_after(a, b) if b != ' ' else GAP)
 name_w -= GAP
-
-# Shift name slightly left (NX=80) so 'E' ends at ~923, giving plenty of room
-# for switch box & bulb at SWX=975 (completely right of 'E', zero overlap).
 NX, NY = 80, 75
 BASE = NY + 6 * U  # 165
 FLOOR = 278        # floor line where minions stand
@@ -51,134 +48,115 @@ for ci, ch in enumerate(NAME):
     LXS.append(x)
     x += glyph_w(ch) + (gap_after(ch, nxt) if nxt != ' ' else GAP)
 
-# Coordinates:
-# Crown on first A:
-CX = NX + 2 * U       # 110.0
-CY = NY - 14          # 61
-# Minion B perch beside crown on the left shoulder of A:
-# A's left edge is at x=80, so perch at x=52 puts B entirely to the left of A!
-CLX = 52.0
-CLY = 105.0           # perch platform beside A shoulder
-
-# Switch station on the right wall (SWX = 975):
-# Last E of OKE ends at 923.0. SWX=975 is >50px to the right of E!
 SWX = 975
-# Minion A at the switch: x = 925 (standing under right edge of name, but on floor at y=278)
+CX = NX + 2 * U       # 110.0
+CY = NY - 14          # 61 (crown on A)
+CLX = 52.0            # perch beside A shoulder
+CLY = 105.0           # perch beside crown
+
+# Minion positions on floor:
+# Switch box centered at SWX = 975
+# Minion A: x = 925
+# Minion B: x = 865
 AX = 925
-# Minion B at the start (in front of Minion A): x = 865
 BX = 865
 
 def dpath(points): return 'M' + ' L'.join(f'{x:.1f},{y:.1f}' for x, y in points)
 
-edge_paths, mid_paths, refl_paths, mask_paths, pads = [], [], [], [], []
-for ci, ch in enumerate(NAME.replace(' ', '')):
-    ox = LXS[ci]
-    for seg in LETTERS[ch][0]:
-        pts = [(ox + px * U, NY + py * U) for px, py in seg]
-        d = dpath(pts)
-        edge_paths.append(f'<path d="{d}" stroke="{EDGE}" stroke-width="{LW}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>')
-        mid_paths.append(f'<path d="{d}" stroke="url(#gold)" stroke-width="{LW - 2}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>')
-        refl_paths.append(f'<path d="{d}" stroke="url(#gold)" stroke-width="{LW - 2}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>')
-        mask_paths.append(f'<path d="{d}" stroke="#fff" stroke-width="{LW}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>')
-    for px, py in LETTERS[ch][1]:
-        cx, cy = ox + px * U, NY + py * U
-        pads.append(f'<circle cx="{cx}" cy="{cy}" r="3.2" fill="{BG}" stroke="{GOLD}" stroke-width="1.2"/>')
+css = []
+mid, refl, pads, mask = [], [], [], []
 
-T = 16.0
-keyframes = {}
-def kf(sel, frames):
-    keyframes[sel] = sorted(frames, key=lambda f: f[0])
+pos_list = list(LXS)
+for ci, ch in enumerate(NAME):
+    if ch == ' ': continue
+    x_pos = pos_list.pop(0) if pos_list else NX
+    strokes, padpts = LETTERS[ch]
+    strokes = [[(x_pos + px * U, NY + py * U) for px, py in s] for s in strokes]
+    for si, s in enumerate(strokes):
+        d = dpath(s)
+        common = f'd="{d}" fill="none" stroke-linejoin="round" stroke-linecap="round"'
+        mid.append(f'<path {common} stroke="{EDGE}" stroke-width="{LW + 4}"/>')
+        mid.append(f'<path {common} stroke="url(#gold)" stroke-width="{LW}"/>')
+        refl.append(f'<path {common} stroke="url(#gold)" stroke-width="{LW}"/>')
+        mid.append(f'<path {common} stroke="{HILITE}" stroke-width="2.2" stroke-opacity=".55" transform="translate(-0.8,-0.8)"/>')
+        mask.append(f'<path d="{d}" stroke="#fff" stroke-width="{LW}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>')
+    for pi, (px, py) in enumerate(padpts):
+        pads.append(f'<g style="transform-origin:{x_pos + px * U:.1f}px {NY + py * U:.1f}px">'
+                    f'<circle cx="{x_pos + px * U:.1f}" cy="{NY + py * U:.1f}" r="9.5" fill="{EDGE}"/>'
+                    f'<circle cx="{x_pos + px * U:.1f}" cy="{NY + py * U:.1f}" r="8" fill="url(#gold)"/>'
+                    f'<circle cx="{x_pos + px * U:.1f}" cy="{NY + py * U:.1f}" r="3.4" fill="{BG}"/></g>')
 
-# Global Name Illumination (t=9.0s onwards)
-kf('#lit', [
-    (0, 'opacity:0.25'),
-    (8.8, 'opacity:0.25'),
-    (8.9, 'opacity:0.6'),
-    (9.0, 'opacity:1'),
-    (14.6, 'opacity:1'),
-    (15.0, 'opacity:0.25'),
-    (T, 'opacity:0.25'),
-])
-kf('#padsg', [
-    (0, 'opacity:0.25'),
-    (8.8, 'opacity:0.25'),
-    (8.9, 'opacity:0.6'),
-    (9.0, 'opacity:1'),
-    (14.6, 'opacity:1'),
-    (15.0, 'opacity:0.25'),
-    (T, 'opacity:0.25'),
-])
-kf('#reflg', [
-    (0, 'opacity:0.18'),
-    (8.8, 'opacity:0.18'),
-    (9.0, 'opacity:0.6'),
-    (14.6, 'opacity:0.6'),
-    (15.0, 'opacity:0.18'),
-    (T, 'opacity:0.18'),
-])
-kf('#nameglow', [
-    (0, 'opacity:0'),
-    (8.8, 'opacity:0'),
-    (9.0, 'opacity:0.42'),
-    (14.6, 'opacity:0.42'),
-    (15.0, 'opacity:0'),
-    (T, 'opacity:0'),
-])
+T_TOTAL = 16.0
+
+def kf(sel, frames, ease='linear'):
+    """frames = [(seconds, css_declarations), ...]"""
+    end = T_TOTAL
+    if frames[0][0] > 0:
+        frames = [(0, frames[0][1])] + frames
+    if frames[-1][0] < end:
+        frames = frames + [(end, frames[0][1])]
+    
+    kname = f'k{len(css)}'
+    body = ''.join(f'{max(0, min(100, ts / end * 100)):.2f}%{{{decl}}}' for ts, decl in frames)
+    css.append(f'{sel}{{animation:{kname} {end:.2f}s {ease} infinite}}@keyframes {kname}{{{body}}}')
+
+# 1. Glow, Light, and Reflections
+kf('#lit', [(0, 'opacity:0.25'), (8.8, 'opacity:0.25'), (8.9, 'opacity:0.6'), (9.0, 'opacity:1'), (14.6, 'opacity:1'), (15.0, 'opacity:0.25')])
+kf('#padsg', [(0, 'opacity:0.25'), (8.8, 'opacity:0.25'), (8.9, 'opacity:0.6'), (9.0, 'opacity:1'), (14.6, 'opacity:1'), (15.0, 'opacity:0.25')])
+kf('#reflg', [(0, 'opacity:0.18'), (8.8, 'opacity:0.18'), (9.0, 'opacity:0.6'), (14.6, 'opacity:0.6'), (15.0, 'opacity:0.18')])
+kf('#nameglow', [(0, 'opacity:0'), (8.8, 'opacity:0'), (9.0, 'opacity:0.42'), (14.6, 'opacity:0.42'), (15.0, 'opacity:0')])
+
+# Sheen sweep across letters
 kf('#sheen', [
     (0, 'transform:translateX(-260px);opacity:0'),
     (9.2, 'transform:translateX(-260px);opacity:0'),
     (9.3, 'transform:translateX(-260px);opacity:1'),
     (10.8, 'transform:translateX(1100px);opacity:1'),
     (10.9, 'transform:translateX(1100px);opacity:0'),
-    (T, 'transform:translateX(-260px);opacity:0'),
 ])
+
+# Wire spark pulse from switch/bulb to name (t=8.8 - 9.2s)
 kf('#wire_spark', [
     (0, 'stroke-dashoffset:160;opacity:0'),
     (8.8, 'stroke-dashoffset:160;opacity:1'),
     (9.15, 'stroke-dashoffset:-160;opacity:1'),
     (9.2, 'stroke-dashoffset:-160;opacity:0'),
-    (T, 'stroke-dashoffset:160;opacity:0'),
 ])
 
-# Mechanical Switch Lever: flips down at 8.4s
+# Switch lever handle (rotates down around pivot 925, 245)
 kf('#sw_lever', [
     (0, 'transform:rotate(-45deg)'),
     (8.2, 'transform:rotate(-45deg)'),
     (8.4, 'transform:rotate(38deg)'),
     (14.8, 'transform:rotate(38deg)'),
     (15.0, 'transform:rotate(-45deg)'),
-    (T, 'transform:rotate(-45deg)'),
 ])
 
-# Lamp Light Bulb above switch box: ignites at 9.0s
+# Big Visible Lamp / Bulb (on top of switch box at 925, 145)
 kf('#lamp_lit', [
     (0, 'opacity:0'),
-    (8.8, 'opacity:0'),
-    (8.95, 'opacity:0.7'),
-    (9.0, 'opacity:1'),
-    (14.6, 'opacity:1'),
+    (8.75, 'opacity:0'),
+    (8.8, 'opacity:1'),
+    (14.8, 'opacity:1'),
     (15.0, 'opacity:0'),
-    (T, 'opacity:0'),
 ])
 kf('#lamp_glow', [
-    (0, 'opacity:0;transform:scale(0.3)'),
-    (8.8, 'opacity:0;transform:scale(0.3)'),
+    (0, 'opacity:0;transform:scale(0.5)'),
+    (8.75, 'opacity:0;transform:scale(0.5)'),
+    (8.85, 'opacity:0.95;transform:scale(1.1)'),
     (9.0, 'opacity:0.85;transform:scale(1.0)'),
-    (9.3, 'opacity:0.95;transform:scale(1.1)'),
-    (9.6, 'opacity:0.85;transform:scale(1.0)'),
-    (14.6, 'opacity:0.85;transform:scale(1.0)'),
-    (15.0, 'opacity:0;transform:scale(0.3)'),
-    (T, 'opacity:0;transform:scale(0.3)'),
+    (14.8, 'opacity:0.85;transform:scale(1.0)'),
+    (15.0, 'opacity:0;transform:scale(0.5)'),
 ])
 
-# Crown: crooked until fixed by B at 7.0s
-kf('#crown_g', [
-    (0, 'transform:rotate(24deg)'),
-    (6.8, 'transform:rotate(24deg)'),
-    (7.0, 'transform:rotate(0deg)'),
-    (14.8, 'transform:rotate(0deg)'),
-    (15.0, 'transform:rotate(24deg)'),
-    (T, 'transform:rotate(24deg)'),
+# Crown: crooked (-18deg) -> snaps straight at 7.0s
+kf('#crownr', [
+    (0, 'transform:rotate(-18deg)'),
+    (6.8, 'transform:rotate(-18deg)'),
+    (7.0, 'transform:rotate(4deg)'),
+    (7.2, 'transform:none'),
+    (14.8, 'transform:none'),
+    (15.2, 'transform:rotate(-18deg)'),
 ])
 
 # Crown spark burst when straight (7.0s)
@@ -187,115 +165,120 @@ kf('#crown_sparks', [
     (6.95, 'opacity:0;transform:scale(0)'),
     (7.05, 'opacity:1;transform:scale(1.4)'),
     (7.45, 'opacity:0;transform:scale(2.0)'),
-    (T, 'opacity:0;transform:scale(0)'),
 ])
 
-# Dramatic Bonk Impact Flash Starburst on B's head (2.0s)
-# NOTE: translate(BX, FLOOR - 74) included in keyframes so it NEVER renders at (0, 0)!
+# Bonk impact starburst on B's head (2.0s)
 kf('#bonk_star', [
-    (0, f'opacity:0;transform:translate({BX}px,{FLOOR - 74}px) scale(0)'),
-    (1.95, f'opacity:0;transform:translate({BX}px,{FLOOR - 74}px) scale(0)'),
-    (2.02, f'opacity:1;transform:translate({BX}px,{FLOOR - 74}px) scale(1.6)'),
-    (2.45, f'opacity:0;transform:translate({BX}px,{FLOOR - 74}px) scale(2.2)'),
-    (T, f'opacity:0;transform:translate({BX}px,{FLOOR - 74}px) scale(0)'),
+    (0, f'opacity:0;transform:translate({BX - 4}px,{FLOOR - 74}px) scale(0)'),
+    (1.95, f'opacity:0;transform:translate({BX - 4}px,{FLOOR - 74}px) scale(0)'),
+    (2.02, f'opacity:1;transform:translate({BX - 4}px,{FLOOR - 74}px) scale(1.5)'),
+    (2.45, f'opacity:0;transform:translate({BX - 4}px,{FLOOR - 74}px) scale(2.2)'),
 ])
 
-# Minion A Position: stays at AX=925 near switch box
+# Minion A Position (stays at switch, bounces when cheering)
 kf('.minion_a', [
     (0, f'transform:translate({AX}px,{FLOOR}px)'),
     (8.8, f'transform:translate({AX}px,{FLOOR}px)'),
-    # Cheering bounces during Beat 5
-    (9.0, f'transform:translate({AX}px,{FLOOR - 14}px)'),
+    (9.0, f'transform:translate({AX}px,{FLOOR - 12}px)'),
     (9.3, f'transform:translate({AX}px,{FLOOR}px)'),
-    (9.6, f'transform:translate({AX}px,{FLOOR - 14}px)'),
+    (9.6, f'transform:translate({AX}px,{FLOOR - 12}px)'),
     (9.9, f'transform:translate({AX}px,{FLOOR}px)'),
-    (14.5, f'transform:translate({AX}px,{FLOOR}px)'),
-    (T, f'transform:translate({AX}px,{FLOOR}px)'),
+    (10.2, f'transform:translate({AX}px,{FLOOR - 12}px)'),
+    (10.5, f'transform:translate({AX}px,{FLOOR}px)'),
+    (10.8, f'transform:translate({AX}px,{FLOOR - 12}px)'),
+    (11.1, f'transform:translate({AX}px,{FLOOR}px)'),
+    (14.6, f'transform:translate({AX}px,{FLOOR}px)'),
 ])
 
-# Minion A Left Arm: holds wrench, winds up at 1.7s, swings LEFT to bonk B at 2.0s
+# Minion A Arms
+# Left arm: holds wrench, winds up at 1.7s, bonks B at 2.0s, points left at 2.6s, cheers at 9.0s
 kf('.m_a_arm_l', [
-    (0, 'transform:rotate(-15deg)'),
-    (1.5, 'transform:rotate(-15deg)'),
-    (1.7, 'transform:rotate(75deg)'),   # windup high
-    (2.02, 'transform:rotate(-85deg)'), # slam down left onto B's head!
-    (2.4, 'transform:rotate(-85deg)'),  # hold impact
-    (2.8, 'transform:rotate(-45deg)'),  # point wrench
-    (3.5, 'transform:rotate(-15deg)'),  # lower
-    (9.0, 'transform:rotate(-155deg)'), # cheer arms up!
-    (14.5, 'transform:rotate(-155deg)'),
-    (15.0, 'transform:rotate(-15deg)'),
-    (T, 'transform:rotate(-15deg)'),
+    (0, 'transform:rotate(0deg)'),
+    (1.5, 'transform:rotate(0deg)'),
+    (1.75, 'transform:rotate(75deg)'),   # raises wrench way up!
+    (2.02, 'transform:rotate(-85deg)'), # SLAMS DOWN LEFT ONTO B: BONK!
+    (2.35, 'transform:rotate(-85deg)'),
+    (2.6, 'transform:rotate(-45deg)'),  # points left across the board to crown!
+    (3.5, 'transform:rotate(-45deg)'),
+    (3.9, 'transform:rotate(0deg)'),
+    (8.8, 'transform:rotate(0deg)'),
+    (9.0, 'transform:rotate(-145deg)'), # cheer arms up!
+    (14.5, 'transform:rotate(-145deg)'),
+    (14.8, 'transform:rotate(0deg)'),
 ])
 
-# Minion A Right Arm: reaches RIGHT to pull switch lever at SWX=975
+# Right arm: reaches to switch lever at 8.0s, pulls down at 8.4s, cheers at 9.0s
 kf('.m_a_arm_r', [
-    (0, 'transform:rotate(10deg)'),
-    (7.8, 'transform:rotate(10deg)'),
-    (8.1, 'transform:rotate(-55deg)'),  # reach right towards lever knob
-    (8.4, 'transform:rotate(30deg)'),   # pull lever down
-    (8.8, 'transform:rotate(30deg)'),
-    (9.0, 'transform:rotate(155deg)'),  # cheer arms up!
-    (14.5, 'transform:rotate(155deg)'),
-    (15.0, 'transform:rotate(10deg)'),
-    (T, 'transform:rotate(10deg)'),
+    (0, 'transform:rotate(0deg)'),
+    (7.8, 'transform:rotate(0deg)'),
+    (8.1, 'transform:rotate(-55deg)'),  # reaches right to red knob
+    (8.4, 'transform:rotate(30deg)'),   # pulls lever down!
+    (8.7, 'transform:rotate(30deg)'),
+    (9.0, 'transform:rotate(-145deg)'), # cheer arms up!
+    (14.5, 'transform:rotate(-145deg)'),
+    (14.8, 'transform:rotate(0deg)'),
 ])
 
-# Minion A Eye / Pupil: tracks B, tracks switch, celebrates
+# Minion A Eye pupil
 kf('.m_a_pupil', [
-    (0, 'transform:translate(-2px, 0px)'),       # look left at B
-    (2.0, 'transform:translate(-3px, 1px)'),      # glaring down-left at B
-    (3.5, 'transform:translate(-3px, 0px)'),      # watch B run left
-    (6.5, 'transform:translate(-3.5px, -2px)'),   # look up-left at B on crown
-    (7.8, 'transform:translate(2px, 0px)'),       # look right at switch
-    (8.4, 'transform:translate(2px, 1px)'),       # look at lever
-    (9.0, 'transform:translate(0px, -2px)'),      # look up at blazing bulb!
-    (14.5, 'transform:translate(0px, -2px)'),
-    (15.0, 'transform:translate(-2px, 0px)'),
-    (T, 'transform:translate(-2px, 0px)'),
+    (0, 'transform:none'),
+    (1.4, 'transform:translate(2px, 1px)'),    # looks at B
+    (2.6, 'transform:translate(-2.5px, -1px)'), # looks left at crown
+    (7.8, 'transform:translate(-2px, -3px)'),   # looks up at switch
+    (8.6, 'transform:translate(-2px, -3px)'),
+    (9.0, 'transform:none'),
+    (14.6, 'transform:none'),
 ])
 
-# Minion A Body Bounce / Cheer
+# Minion A Eyelid blink
+kf('.m_a_lid', [
+    (0, 'opacity:0'),
+    (0.9, 'opacity:0'),
+    (1.0, 'opacity:1'),
+    (1.15, 'opacity:0'),
+    (12.0, 'opacity:0'),
+    (12.1, 'opacity:1'),
+    (12.25, 'opacity:0'),
+])
+
+# Minion A Body Squash/Stretch
 kf('.minion_a_inner', [
     (0, 'transform:none'),
-    (1.7, 'transform:scale(0.96, 1.05)'),
-    (2.02, 'transform:scale(1.08, 0.92)'), # slam exertion
+    (1.75, 'transform:scale(0.96, 1.05)'), # stretch on windup
+    (2.0, 'transform:scale(1.08, 0.92)'),  # squash on slam
     (2.3, 'transform:none'),
-    (8.4, 'transform:scale(1.04, 0.96)'), # pull effort
-    (9.0, 'transform:scale(0.92, 1.1)'),  # cheer jump
+    (8.9, 'transform:none'),
+    (9.0, 'transform:scale(0.94, 1.08)'),
     (9.3, 'transform:scale(1.06, 0.94)'),
-    (9.6, 'transform:scale(0.92, 1.1)'),
+    (9.6, 'transform:scale(0.94, 1.08)'),
     (9.9, 'transform:scale(1.06, 0.94)'),
     (14.5, 'transform:none'),
-    (T, 'transform:none'),
 ])
 
-# Minion B Position:
-# Starts at BX=865 (plenty of room inside frame, 175px from right wall).
-# Runs left to CLX=52 (perch platform beside A shoulder).
+# Minion B Position
 kf('.minion_b', [
     (0, f'transform:translate({BX}px,{FLOOR}px)'),
     (1.95, f'transform:translate({BX}px,{FLOOR}px)'),
-    (2.05, f'transform:translate({BX - 10}px,{FLOOR}px)'), # reels left from bonk
+    (2.05, f'transform:translate({BX + 12}px,{FLOOR}px)'), # reels back
     (3.2, f'transform:translate({BX}px,{FLOOR}px)'),
-    # Run to CLX=52
+    # Run to CLX
     (3.4, f'transform:translate({BX - 60}px,{FLOOR}px) scaleX(-1)'),
     (4.0, f'transform:translate({(BX + CLX)/2}px,{FLOOR}px) scaleX(-1)'),
     (5.4, f'transform:translate({CLX}px,{FLOOR}px) scaleX(-1)'),
-    # Climb up ladder to perch beside A shoulder (CLX=52, CLY=105)
+    # Climb up A
     (5.5, f'transform:translate({CLX}px,{FLOOR}px) scaleX(1)'),
     (5.8, f'transform:translate({CLX}px,{FLOOR - 55}px) scaleX(1)'),
     (6.2, f'transform:translate({CLX}px,{FLOOR - 120}px) scaleX(1)'),
     (6.6, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
-    # Push crown: crown is at CX=110, B reaches arm right to push it straight
+    # Push crown
     (6.8, f'transform:translate({CLX + 6}px,{CLY - 4}px) scaleX(1)'),
     (7.0, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
-    # Cheering on perch beside A (unobscuring A!)
+    # Cheering on A
     (7.2, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
     (8.8, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
-    (9.0, f'transform:translate({CLX}px,{CLY - 14}px) scaleX(1)'),
+    (9.0, f'transform:translate({CLX}px,{CLY - 12}px) scaleX(1)'),
     (9.3, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
-    (9.6, f'transform:translate({CLX}px,{CLY - 14}px) scaleX(1)'),
+    (9.6, f'transform:translate({CLX}px,{CLY - 12}px) scaleX(1)'),
     (9.9, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
     (14.5, f'transform:translate({CLX}px,{CLY}px) scaleX(1)'),
     # Slide down
@@ -303,7 +286,6 @@ kf('.minion_b', [
     # Run back to BX
     (15.2, f'transform:translate({(BX + CLX)/2}px,{FLOOR}px) scaleX(1)'),
     (15.8, f'transform:translate({BX}px,{FLOOR}px) scaleX(1)'),
-    (T, f'transform:translate({BX}px,{FLOOR}px) scaleX(1)'),
 ])
 
 # Minion B Body Squash & Stretch
@@ -313,27 +295,26 @@ kf('.minion_b_inner', [
     (2.05, 'transform:scale(1.4, 0.52)'), # massive squash on bonk!
     (2.25, 'transform:scale(0.85, 1.2)'),  # spring back up
     (2.5, 'transform:none'),
-    # Running squash & stretch cycle
-    (3.4, 'transform:scale(1.1, 0.9) rotate(-14deg)'),
-    (3.8, 'transform:scale(0.92, 1.08) rotate(-18deg)'),
-    (4.2, 'transform:scale(1.1, 0.9) rotate(-14deg)'),
-    (4.6, 'transform:scale(0.92, 1.08) rotate(-18deg)'),
-    (5.0, 'transform:scale(1.1, 0.9) rotate(-14deg)'),
+    # Running bounce & lean
+    (3.4, 'transform:scale(1.1, 0.9) rotate(14deg)'),
+    (3.8, 'transform:scale(0.92, 1.08) rotate(18deg)'),
+    (4.2, 'transform:scale(1.1, 0.9) rotate(14deg)'),
+    (4.6, 'transform:scale(0.92, 1.08) rotate(18deg)'),
+    (5.0, 'transform:scale(1.1, 0.9) rotate(14deg)'),
     (5.4, 'transform:none'),
-    # Climbing effort
+    # Climbing
     (5.8, 'transform:scale(0.92, 1.08)'),
     (6.2, 'transform:scale(1.08, 0.92)'),
     (6.6, 'transform:none'),
-    # Cheering bounce
+    # Cheering on A
     (9.0, 'transform:scale(0.92, 1.1)'),
     (9.3, 'transform:scale(1.08, 0.92)'),
     (9.6, 'transform:scale(0.92, 1.1)'),
     (9.9, 'transform:scale(1.08, 0.92)'),
     (14.5, 'transform:none'),
-    (T, 'transform:none'),
 ])
 
-# Minion B Bump on head: swells on bonk
+# Minion B Bump on head
 kf('.m_b_bump', [
     (0, 'opacity:0;transform:scale(0)'),
     (2.05, 'opacity:0;transform:scale(0)'),
@@ -341,10 +322,9 @@ kf('.m_b_bump', [
     (2.35, 'opacity:1;transform:scale(1.0)'),
     (3.4, 'opacity:1;transform:scale(1.0)'),
     (3.8, 'opacity:0;transform:scale(0)'),
-    (T, 'opacity:0;transform:scale(0)'),
 ])
 
-# Minion B Orbiting comic stars
+# Minion B Stars circling head
 kf('.m_b_stars', [
     (0, 'opacity:0;transform:scale(0) rotate(0deg)'),
     (2.05, 'opacity:0;transform:scale(0) rotate(0deg)'),
@@ -352,78 +332,67 @@ kf('.m_b_stars', [
     (2.6, 'opacity:1;transform:scale(1.0) rotate(240deg)'),
     (3.2, 'opacity:1;transform:scale(0.8) rotate(360deg)'),
     (3.6, 'opacity:0;transform:scale(0) rotate(420deg)'),
-    (T, 'opacity:0;transform:scale(0) rotate(0deg)'),
 ])
 
-# Minion B Eyes: dazed on bonk, focused on run, happy when celebrating
+# Minion B Pupils: look at A, dizzy spin, look forward, cheer
 kf('.m_b_pupil', [
-    (0, 'transform:translate(2px, 0px)'),        # look right at A
-    (1.5, 'transform:translate(2px, 0px)'),
-    (2.1, 'transform:translate(-2px, -2px)'),    # dazed dizzy roll
-    (2.4, 'transform:translate(2px, 2px)'),
-    (2.7, 'transform:translate(-1px, 1px)'),
-    (3.4, 'transform:translate(-2.5px, 0px)'),   # look ahead (left)
-    (6.6, 'transform:translate(2px, -1px)'),     # look at crown
-    (9.0, 'transform:translate(0px, -2px)'),     # cheering up
-    (14.5, 'transform:translate(0px, -2px)'),
-    (T, 'transform:translate(2px, 0px)'),
+    (0, 'transform:none'),
+    (1.5, 'transform:translate(-2px, 0px)'), # looks at A
+    (2.1, 'transform:translate(2px, -2px)'), # dizzy spin
+    (2.4, 'transform:translate(-2px, 2px)'),
+    (2.7, 'transform:translate(1px, 1px)'),
+    (3.4, 'transform:translate(2.5px, 0px)'), # looks forward in sprint
+    (6.6, 'transform:translate(2px, -1px)'), # looks at crown
+    (9.0, 'transform:none'),
+    (14.5, 'transform:none'),
 ])
 
-# Minion B Left Arm
+# Minion B Arms
 kf('.m_b_arm_l', [
     (0, 'transform:rotate(0deg)'),
-    (2.05, 'transform:rotate(-70deg)'), # flail on bonk
+    (2.05, 'transform:rotate(-70deg)'), # head clutch
     (2.8, 'transform:rotate(-70deg)'),
     (3.2, 'transform:rotate(0deg)'),
-    # Running arm pump
+    # Running arms pump
     (3.4, 'transform:rotate(-55deg)'),
     (3.8, 'transform:rotate(55deg)'),
     (4.2, 'transform:rotate(-55deg)'),
     (4.6, 'transform:rotate(55deg)'),
     (5.0, 'transform:rotate(-55deg)'),
-    # Climbing reach
-    (5.4, 'transform:rotate(-85deg)'),
+    (5.4, 'transform:rotate(-85deg)'), # climb reaching
     (5.8, 'transform:rotate(-35deg)'),
     (6.2, 'transform:rotate(-85deg)'),
-    # Push crown
-    (6.6, 'transform:rotate(105deg)'),
+    (6.6, 'transform:rotate(105deg)'), # push crown
     (7.0, 'transform:rotate(105deg)'),
     (7.5, 'transform:rotate(0deg)'),
-    # Cheer arms up
-    (9.0, 'transform:rotate(-145deg)'),
+    (9.0, 'transform:rotate(-145deg)'), # cheer
     (14.5, 'transform:rotate(-145deg)'),
     (15.0, 'transform:rotate(0deg)'),
-    (T, 'transform:rotate(0deg)'),
 ])
 
-# Minion B Right Arm
 kf('.m_b_arm_r', [
     (0, 'transform:rotate(0deg)'),
-    (2.05, 'transform:rotate(70deg)'), # flail on bonk
+    (2.05, 'transform:rotate(70deg)'), # head clutch
     (2.8, 'transform:rotate(70deg)'),
     (3.2, 'transform:rotate(0deg)'),
-    # Running arm pump
+    # Running arms pump
     (3.4, 'transform:rotate(55deg)'),
     (3.8, 'transform:rotate(-55deg)'),
     (4.2, 'transform:rotate(55deg)'),
     (4.6, 'transform:rotate(-55deg)'),
     (5.0, 'transform:rotate(55deg)'),
-    # Climbing reach
     (5.4, 'transform:rotate(-35deg)'),
     (5.8, 'transform:rotate(-85deg)'),
     (6.2, 'transform:rotate(-35deg)'),
-    # Push crown straight (reaches right to crown at CX=110)
-    (6.6, 'transform:rotate(105deg)'),
+    (6.6, 'transform:rotate(105deg)'), # push crown
     (7.0, 'transform:rotate(105deg)'),
     (7.5, 'transform:rotate(0deg)'),
-    # Cheer arms up
-    (9.0, 'transform:rotate(-145deg)'),
+    (9.0, 'transform:rotate(-145deg)'), # cheer
     (14.5, 'transform:rotate(-145deg)'),
     (15.0, 'transform:rotate(0deg)'),
-    (T, 'transform:rotate(0deg)'),
 ])
 
-# Minion B Legs: running sprint cycle
+# Minion B Legs running cycle
 kf('.m_b_l1', [
     (0, 'transform:none'),
     (3.2, 'transform:none'),
@@ -439,7 +408,6 @@ kf('.m_b_l1', [
     (15.2, 'transform:rotate(36deg)'),
     (15.5, 'transform:rotate(-36deg)'),
     (15.8, 'transform:none'),
-    (T, 'transform:none'),
 ])
 kf('.m_b_l2', [
     (0, 'transform:none'),
@@ -456,54 +424,294 @@ kf('.m_b_l2', [
     (15.2, 'transform:rotate(-36deg)'),
     (15.5, 'transform:rotate(36deg)'),
     (15.8, 'transform:none'),
-    (T, 'transform:none'),
 ])
 
-css = []
-for sel, frames in keyframes.items():
-    idx = len(css)
-    name = f'k{idx}'
-    css.append(f'{sel}{{animation:{name} {T:.2f}s linear infinite}}')
-    body = []
-    for t, decl in frames:
-        pct = max(0.0, min(100.0, (t / T) * 100))
-        body.append(f'{pct:.2f}%{{{decl}}}')
-    css.append(f'@keyframes {name}{{{ "".join(body) }}}')
-
-reduced_css = f'''
-@media (prefers-reduced-motion: reduce) {{
-  *, ::before, ::after {{{{
+reduced_css = '''
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
     animation-delay: -10s !important;
     animation-play-state: paused !important;
-  }}
-  #lit, #padsg, #reflg {{ opacity: 1 !important; }}
-  #nameglow {{ opacity: 0.42 !important; }}
-  #lamp_lit {{ opacity: 1 !important; }}
-  #lamp_glow {{ opacity: 0.85 !important; transform: scale(1) !important; }}
-  #crown_g {{ transform: rotate(0deg) !important; }}
-  .minion_a {{ transform: translate({AX}px,{FLOOR}px) !important; }}
-  .minion_b {{ transform: translate({CLX}px,{CLY}px) scaleX(1) !important; }}
-  .m_a_arm_l, .m_a_arm_r {{ transform: rotate(-155deg) !important; }}
-  .m_b_arm_l, .m_b_arm_r {{ transform: rotate(-145deg) !important; }}
-  #sw_lever {{ transform: rotate(38deg) !important; }}
-}}
+  }
+  #lit, #padsg, #reflg { opacity: 1 !important; }
+  #nameglow { opacity: 0.42 !important; }
+  #lamp_lit { opacity: 1 !important; }
+  #lamp_glow { opacity: 0.85 !important; transform: scale(1) !important; }
+  #sw_lever { transform: rotate(38deg) !important; }
+  #crownr { transform: none !important; }
+}
 '''
 
-STAR = "M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z"
+# Minion A SVG (Stuart: 84px tall, width 42px)
+minion_a_svg = f'''
+<g class="minion_a" transform="translate({AX},{FLOOR})">
+  <g class="minion_a_inner">
+    <!-- Hair strands -->
+    <path d="M-12,-83 C-6,-91 -2,-87 0,-84 C2,-87 6,-91 12,-83" stroke="#15171d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M-7,-85 C-2,-92 2,-92 7,-85" stroke="#15171d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Body capsule (84px tall, 42px wide) -->
+    <rect x="-21" y="-84" width="42" height="84" rx="21" fill="url(#minion_body_a)"/>
+    <!-- 3D Shading & Highlight -->
+    <path d="M-17,-78 C-19,-60 -19,-20 -17,-5" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M17,-78 C19,-60 19,-20 17,-5" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
 
-# Crown at (CX, CY) on top of the first A
+    <!-- Mouth -->
+    <path d="M-8,-30 Q0,-24 8,-30" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Goggle strap -->
+    <rect x="-22" y="-60" width="44" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-22" y1="-55" x2="22" y2="-55" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+    <!-- Single Goggle (Stuart) -->
+    <g transform="translate(0, -55)">
+      <!-- Outer silver frame -->
+      <circle cx="0" cy="0" r="15.5" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.5"/>
+      <circle cx="-14.2" cy="0" r="1.4" fill="#222"/>
+      <circle cx="14.2" cy="0" r="1.4" fill="#222"/>
+      <!-- Inner bevel -->
+      <circle cx="0" cy="0" r="11.5" fill="#1b1d22"/>
+      <!-- Sclera -->
+      <circle cx="0" cy="0" r="10.2" fill="#ffffff"/>
+      <!-- Pupil & Iris -->
+      <g class="m_a_pupil">
+        <circle cx="0" cy="0" r="5.2" fill="#7d4212" stroke="#4a2406" stroke-width="0.8"/>
+        <circle cx="0" cy="0" r="3.0" fill="#111111"/>
+        <circle cx="1.8" cy="-1.8" r="1.6" fill="#ffffff"/>
+        <circle cx="-1.5" cy="2.0" r="0.8" fill="#ffffff" opacity="0.6"/>
+      </g>
+      <!-- Eyelid for blinks -->
+      <path class="m_a_lid" d="M-10.2,-4 Q0,2 10.2,-4 V-11 H-10.2 Z" fill="#ffd426"/>
+    </g>
+
+    <!-- Denim Overalls -->
+    <path d="M-21,-28 C-21,-12 -16,0 0,0 C16,0 21,-12 21,-28 L21,-8 C21,0 14,0 0,0 C-14,0 -21,0 -21,-8 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-16,-34 H16 V-4 Q16,0 0,0 Q-16,0 -16,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-19,-40 L-12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <path d="M19,-40 L12,-30" stroke="#265691" stroke-width="4.8" stroke-linecap="round"/>
+    <circle cx="-12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <circle cx="12.5" cy="-30.5" r="2.2" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-9,-22 H9 V-13 Q9,-7 0,-7 Q-9,-7 -9,-13 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.2"/>
+    <circle cx="0" cy="-14" r="3.4" fill="#152233"/>
+    <circle cx="0" cy="-14" r="2.2" fill="#1e4475"/>
+    <path d="M-0.6,-15.5 H0.8 V-12.5 H-0.4" stroke="#152233" stroke-width="0.9" fill="none"/>
+
+    <!-- Legs & Shoes -->
+    <g class="m_a_l1">
+      <rect x="-15" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M-18,7 H-4 C-4,4 -7,3 -10,3 C-15,3 -18,4 -18,7 Z" fill="#14161a"/>
+      <line x1="-18" y1="7" x2="-4" y2="7" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+    <g class="m_a_l2">
+      <rect x="5" y="-2" width="10" height="9" rx="2" fill="#1d4373"/>
+      <path d="M2,7 H16 C16,4 13,3 10,3 C5,3 2,4 2,7 Z" fill="#14161a"/>
+      <line x1="2" y1="7" x2="16" y2="7" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+
+    <!-- Left Arm (with CARTOON WRENCH) -->
+    <g class="m_a_arm_l" style="transform-origin: -18px -32px">
+      <path d="M-18,-32 Q-28,-22 -26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <!-- Glove -->
+      <circle cx="-26" cy="-8" r="5.2" fill="#15171d"/>
+      <!-- Heavy Wrench / Mallet -->
+      <g transform="translate(-26, -8) rotate(30)">
+        <rect x="-2.5" y="-22" width="5" height="28" rx="2" fill="#717a8c" stroke="#353d4c" stroke-width="1"/>
+        <!-- Wrench Head -->
+        <path d="M-8,-32 H8 V-22 C8,-20 4,-19 0,-19 C-4,-19 -8,-20 -8,-22 Z" fill="#475467" stroke="#1d2939" stroke-width="1.4"/>
+        <rect x="-3" y="-32" width="6" height="8" rx="1" fill="#1d2939"/>
+      </g>
+    </g>
+
+    <!-- Right Arm -->
+    <g class="m_a_arm_r" style="transform-origin: 18px -32px">
+      <path d="M18,-32 Q28,-22 26,-10" stroke="#ffd426" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+      <circle cx="26" cy="-8" r="5.2" fill="#15171d"/>
+    </g>
+  </g>
+</g>
+'''
+
+# Minion B SVG (Bob: 68px tall, width 46px, 2 eyes with heterochromia)
+minion_b_svg = f'''
+<g class="minion_b" transform="translate({BX},{FLOOR})">
+  <g class="minion_b_inner">
+    <!-- Hair sprouts -->
+    <path d="M-4,-67 V-75 M0,-67 V-77 M4,-67 V-75" stroke="#15171d" stroke-width="2.2" stroke-linecap="round"/>
+
+    <!-- Large Bump / Knot on head (bonk reaction) -->
+    <g class="m_b_bump" style="transform-origin: 0px -68px">
+      <path d="M-9,-68 Q0,-90 9,-68 Z" fill="#ff6b6b" stroke="#d43b3b" stroke-width="1.4"/>
+      <line x1="-4" y1="-78" x2="4" y2="-78" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+      <line x1="-3" y1="-73" x2="3" y2="-73" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+    </g>
+
+    <!-- Bold Spinning Comic Stars -->
+    <g class="m_b_stars" style="transform-origin: 0px -78px">
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(-20,-75) scale(0.9)"/>
+      <path d="M0,-12 L3,-3 L12,0 L3,3 L0,12 L-3,3 L-12,0 L-3,-3 Z" fill="#ffd426" stroke="#c99700" stroke-width="1.2" transform="translate(20,-72) scale(1.0)"/>
+      <path d="M0,-10 L2.5,-2.5 L10,0 L2.5,2.5 L0,10 L-2.5,2.5 L-10,0 L-2.5,-2.5 Z" fill="#ffffff" stroke="#c99700" stroke-width="1" transform="translate(0,-88) scale(0.8)"/>
+    </g>
+
+    <!-- Body capsule (68px tall, 46px wide) -->
+    <rect x="-23" y="-68" width="46" height="68" rx="23" fill="url(#minion_body_b)"/>
+    <path d="M-18,-62 C-20,-48 -20,-18 -18,-4" stroke="#fff8b0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+    <path d="M18,-62 C20,-48 20,-18 18,-4" stroke="#cc9200" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45"/>
+
+    <!-- Mouth -->
+    <path d="M-8,-24 Q0,-16 8,-24" stroke="#6b3a0a" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+
+    <!-- Goggle strap -->
+    <rect x="-24" y="-48" width="48" height="10" rx="2" fill="#1e2026"/>
+    <line x1="-24" y1="-43" x2="24" y2="-43" stroke="#111317" stroke-width="1.2" stroke-dasharray="3 2"/>
+
+    <!-- Two Goggles (Bob: Heterochromia) -->
+    <!-- Left Goggle (Green Eye) -->
+    <g transform="translate(-8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="-9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#2e7d32" stroke="#1b4d1f" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+    <!-- Right Goggle (Brown Eye) -->
+    <g transform="translate(8.5, -43)">
+      <circle cx="0" cy="0" r="10.8" fill="url(#silver_rim)" stroke="#353b49" stroke-width="1.2"/>
+      <circle cx="9.8" cy="0" r="1.2" fill="#222"/>
+      <circle cx="0" cy="0" r="8.0" fill="#1b1d22"/>
+      <circle cx="0" cy="0" r="7.0" fill="#ffffff"/>
+      <g class="m_b_pupil">
+        <circle cx="0" cy="0" r="3.6" fill="#7d4212" stroke="#4a2406" stroke-width="0.6"/>
+        <circle cx="0" cy="0" r="2.0" fill="#111111"/>
+        <circle cx="1.2" cy="-1.2" r="1.1" fill="#ffffff"/>
+      </g>
+    </g>
+
+    <!-- Overalls -->
+    <path d="M-23,-24 C-23,-10 -18,0 0,0 C18,0 23,-10 23,-24 L23,-6 C23,0 16,0 0,0 C-16,0 -23,0 -23,-6 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="url(#denim_grad)"/>
+    <path d="M-17,-27 H17 V-4 Q17,0 0,0 Q-17,0 -17,-4 Z" fill="none" stroke="#4377b5" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+    <!-- Straps -->
+    <path d="M-21,-33 L-13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M21,-33 L13,-24" stroke="#265691" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="-13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <circle cx="13.5" cy="-24.5" r="2.0" fill="#141820"/>
+    <!-- Pocket -->
+    <path d="M-8,-18 H8 V-10 Q8,-5 0,-5 Q-8,-5 -8,-10 Z" fill="#1e4475" stroke="#17355c" stroke-width="1.1"/>
+    <circle cx="0" cy="-11" r="3.0" fill="#152233"/>
+    <circle cx="0" cy="-11" r="1.8" fill="#1e4475"/>
+
+    <!-- Legs & Shoes -->
+    <g class="m_b_l1" style="transform-origin: -11px 0px">
+      <rect x="-16" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M-19,6 H-5 C-5,3.5 -8,2.5 -11,2.5 C-16,2.5 -19,3.5 -19,6 Z" fill="#14161a"/>
+      <line x1="-19" y1="6" x2="-5" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+    <g class="m_b_l2" style="transform-origin: 11px 0px">
+      <rect x="6" y="-2" width="10" height="8" rx="2" fill="#1d4373"/>
+      <path d="M3,6 H17 C17,3.5 14,2.5 11,2.5 C6,2.5 3,3.5 3,6 Z" fill="#14161a"/>
+      <line x1="3" y1="6" x2="17" y2="6" stroke="#2c303a" stroke-width="1.2"/>
+    </g>
+
+    <!-- Arms -->
+    <g class="m_b_arm_l" style="transform-origin: -19px -26px">
+      <path d="M-19,-26 Q-28,-16 -24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="-24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+    <g class="m_b_arm_r" style="transform-origin: 19px -26px">
+      <path d="M19,-26 Q28,-16 24,-4" stroke="#ffd426" stroke-width="5.8" stroke-linecap="round" fill="none"/>
+      <circle cx="24" cy="-2" r="4.6" fill="#15171d"/>
+    </g>
+  </g>
+</g>
+'''
+
+# Real Lever/Switch Box + Big Industrial Light Bulb
+switch_apparatus = f'''
+<g id="switch_station">
+  <!-- Power conduit from switch to name -->
+  <path d="M{SWX},{BASE + 8} V210" stroke="url(#gold)" stroke-width="3.5"/>
+  <path d="M{SWX},{BASE + 8} H{LXS[9] + glyph_w('E')}" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
+  <path id="wire_spark" d="M{SWX},210 V{BASE + 8} H{LXS[9] + glyph_w('E')}" stroke="{SPARK}" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="20 140" pathLength="100"/>
+
+  <!-- Switch Box Casing (heavy industrial enclosure) -->
+  <rect x="{SWX - 22}" y="208" width="44" height="68" rx="6" fill="#161c2e" stroke="{GOLD}" stroke-width="2"/>
+  <rect x="{SWX - 18}" y="212" width="36" height="60" rx="4" fill="#0d111d"/>
+  <!-- Corner bolts -->
+  <circle cx="{SWX - 17}" cy="213" r="1.8" fill="{HILITE}"/>
+  <circle cx="{SWX + 17}" cy="213" r="1.8" fill="{HILITE}"/>
+  <circle cx="{SWX - 17}" cy="271" r="1.8" fill="{HILITE}"/>
+  <circle cx="{SWX + 17}" cy="271" r="1.8" fill="{HILITE}"/>
+
+  <!-- Electrical warning badge -->
+  <path d="M{SWX - 6},226 L{SWX + 2},220 L{SWX},227 L{SWX + 6},227 L{SWX - 2},235 L{SWX},229 Z" fill="#ffd426"/>
+
+  <!-- Mechanical Lever slot and pivot -->
+  <rect x="{SWX - 4}" y="232" width="8" height="30" rx="3" fill="#05070d"/>
+  <circle cx="{SWX}" cy="245" r="5" fill="#364057" stroke="#1d2433" stroke-width="1.2"/>
+  <circle cx="{SWX}" cy="245" r="2.2" fill="{HILITE}"/>
+
+  <!-- Big Lever Arm + Red Ball Knob -->
+  <g id="sw_lever" style="transform-origin: {SWX}px 245px">
+    <rect x="{SWX - 2.5}" y="218" width="5" height="28" rx="1.5" fill="url(#silver_rim)" stroke="#222" stroke-width="0.8"/>
+    <!-- Big red grip ball knob -->
+    <circle cx="{SWX}" cy="216" r="6.8" fill="url(#red_knob)" stroke="#731111" stroke-width="1"/>
+    <circle cx="{SWX + 1.8}" cy="214.2" r="1.8" fill="#ffffff" opacity="0.8"/>
+  </g>
+
+  <!-- Big Light Bulb / Lamp on top of switch box (center at SWX, 150) -->
+  <g id="lamp_fixture">
+    <!-- Brass / metallic socket -->
+    <rect x="{SWX - 8}" y="174" width="16" height="14" rx="2" fill="#c4932f" stroke="#7a550d" stroke-width="1"/>
+    <line x1="{SWX - 8}" y1="178" x2="{SWX + 8}" y2="178" stroke="#523908" stroke-width="1.2"/>
+    <line x1="{SWX - 8}" y1="183" x2="{SWX + 8}" y2="183" stroke="#523908" stroke-width="1.2"/>
+
+    <!-- Unlit / Dark bulb glass -->
+    <circle cx="{SWX}" cy="150" r="18" fill="#141a29" stroke="#3d4966" stroke-width="1.5" opacity="0.85"/>
+    <!-- Filament coils (visible inside) -->
+    <path d="M{SWX - 4},170 L{SWX - 4},155 L{SWX},146 L{SWX + 4},155 L{SWX + 4},170" fill="none" stroke="#684a1a" stroke-width="1.2"/>
+
+    <!-- Lit Glow & Lamp Bulb (t=9.0s onwards) -->
+    <g id="lamp_lit">
+      <!-- Radiant Light Rays -->
+      <g stroke="#ffd952" stroke-width="2" stroke-linecap="round" opacity="0.75">
+        <line x1="{SWX}" y1="126" x2="{SWX}" y2="114"/>
+        <line x1="{SWX + 17}" y1="133" x2="{SWX + 26}" y2="124"/>
+        <line x1="{SWX + 24}" y1="150" x2="{SWX + 36}" y2="150"/>
+        <line x1="{SWX + 17}" y1="167" x2="{SWX + 26}" y2="176"/>
+        <line x1="{SWX - 17}" y1="133" x2="{SWX - 26}" y2="124"/>
+        <line x1="{SWX - 24}" y1="150" x2="{SWX - 36}" y2="150"/>
+        <line x1="{SWX - 17}" y1="167" x2="{SWX - 26}" y2="176"/>
+      </g>
+      <!-- Brilliant glass core -->
+      <circle cx="{SWX}" cy="150" r="18" fill="url(#lamp_core)" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="{SWX - 4}" cy="144" r="5" fill="#ffffff" opacity="0.75"/>
+    </g>
+    <!-- Giant soft radial bloom flare -->
+    <circle id="lamp_glow" cx="{SWX}" cy="150" r="55" fill="#ffcb36" filter="url(#big)" style="transform-origin:{SWX}px 150px"/>
+  </g>
+</g>
+'''
+
+STAR = 'M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z'
 crown = f'''
-<g id="crown_g" transform-origin="{CX}px {CY + 14}px" style="transform:rotate(24deg)">
-  <!-- Golden Crown Base & Jewels -->
-  <path d="M{CX - 18},{CY + 13} L{CX - 22},{CY - 5} L{CX - 8},{CY + 3} L{CX},{CY - 12} L{CX + 8},{CY + 3} L{CX + 22},{CY - 5} L{CX + 18},{CY + 13} Z" fill="url(#gold)" stroke="{HILITE}" stroke-width="1.2" stroke-linejoin="round"/>
-  <circle cx="{CX - 22}" cy="{CY - 5}" r="2.8" fill="{SPARK}"/>
-  <circle cx="{CX}" cy="{CY - 12}" r="3.5" fill="{SPARK}"/>
-  <circle cx="{CX + 22}" cy="{CY - 5}" r="2.8" fill="{SPARK}"/>
-  <circle cx="{CX - 9}" cy="{CY + 8}" r="1.8" fill="#e03030"/>
-  <circle cx="{CX}" cy="{CY + 8}" r="2.2" fill="{BLUE}"/>
-  <circle cx="{CX + 9}" cy="{CY + 8}" r="1.8" fill="#e03030"/>
-  <rect x="{CX - 17}" y="{CY + 11}" width="34" height="2.5" rx="1.2" fill="{HILITE}" opacity="0.8"/>
-  <g id="crown_sparks" filter="url(#glow)" transform="translate({CX},{CY})">
+<g transform="translate({CX:.1f},{CY})">
+  <g id="crownr">
+    <g id="crown" filter="url(#glow)">
+      <path d="M-21,0 L-25,-21 L-11,-10 L0,-26 L11,-10 L25,-21 L21,0 Z" fill="url(#gold)" stroke="{EDGE}" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M-19,-3.5 H19" stroke="{HILITE}" stroke-width="1.8" stroke-linecap="round" opacity=".8"/>
+      <circle cx="-25" cy="-21" r="3.5" fill="{HILITE}" stroke="{EDGE}" stroke-width="1"/>
+      <circle cx="0" cy="-26" r="3.5" fill="{HILITE}" stroke="{EDGE}" stroke-width="1"/>
+      <circle cx="25" cy="-21" r="3.5" fill="{HILITE}" stroke="{EDGE}" stroke-width="1"/>
+    </g>
+  </g>
+  <!-- Spark burst when crown is pushed straight -->
+  <g id="crown_sparks" filter="url(#glow)" transform="translate(0,-12)">
     <path d="{STAR}" fill="{SPARK}" transform="translate(-28,-14) scale(0.65)"/>
     <path d="{STAR}" fill="{SPARK}" transform="translate(0,-24) scale(0.85)"/>
     <path d="{STAR}" fill="{SPARK}" transform="translate(28,-14) scale(0.65)"/>
@@ -511,370 +719,97 @@ crown = f'''
     <circle cx="12" cy="-16" r="2.2" fill="{HILITE}"/>
   </g>
 </g>
-'''
 
-# Switch Station & Light Bulb at SWX = 975 (well to the right of 'E' at 923):
-SW_BOX_Y = 210
-switch_apparatus = f'''
-<g id="switch_station">
-  <!-- Power conduit from switch to name: runs from SWX=975 left to LXS[9] + glyph_w('E')=923 -->
-  <path d="M{SWX},{BASE} H{LXS[9] + glyph_w('E')}" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
-  <path d="M{SWX},{SW_BOX_Y} V{BASE}" stroke="url(#gold)" stroke-width="3.5" fill="none"/>
-  <path id="wire_spark" d="M{SWX},{SW_BOX_Y} V{BASE} H{LXS[9]}" stroke="#fffdf2" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="20 140" pathLength="100"/>
-
-  <!-- Substantial Mechanical Switch Box -->
-  <rect x="{SWX - 18}" y="{SW_BOX_Y}" width="36" height="{FLOOR - SW_BOX_Y}" rx="5" fill="#121724" stroke="#2a354d" stroke-width="2"/>
-  <rect x="{SWX - 14}" y="{SW_BOX_Y + 4}" width="28" height="{FLOOR - SW_BOX_Y - 8}" rx="3" fill="#182030" stroke="#0e131d" stroke-width="1.2"/>
-  <!-- Corner mounting screws -->
-  <circle cx="{SWX - 12}" cy="{SW_BOX_Y + 7}" r="1.5" fill="#52607a"/>
-  <circle cx="{SWX + 12}" cy="{SW_BOX_Y + 7}" r="1.5" fill="#52607a"/>
-  <circle cx="{SWX - 12}" cy="{FLOOR - 7}" r="1.5" fill="#52607a"/>
-  <circle cx="{SWX + 12}" cy="{FLOOR - 7}" r="1.5" fill="#52607a"/>
-
-  <!-- Lever slot and pivot -->
-  <rect x="{SWX - 4}" y="{SW_BOX_Y + 22}" width="8" height="30" rx="3" fill="#05070d"/>
-  <circle cx="{SWX}" cy="{SW_BOX_Y + 35}" r="5" fill="#364057" stroke="#1d2433" stroke-width="1.2"/>
-  <circle cx="{SWX}" cy="{SW_BOX_Y + 35}" r="2.2" fill="{HILITE}"/>
-
-  <!-- Big Lever Arm + Red Ball Knob -->
-  <g id="sw_lever" style="transform-origin: {SWX}px {SW_BOX_Y + 35}px">
-    <rect x="{SWX - 2.5}" y="{SW_BOX_Y + 8}" width="5" height="28" rx="1.5" fill="url(#silver_rim)" stroke="#222" stroke-width="0.8"/>
-    <!-- Big red grip ball knob -->
-    <circle cx="{SWX}" cy="{SW_BOX_Y + 6}" r="6.8" fill="url(#red_knob)" stroke="#731111" stroke-width="1"/>
-    <circle cx="{SWX + 1.8}" cy="{SW_BOX_Y + 4.2}" r="1.8" fill="#ffffff" opacity="0.8"/>
-  </g>
-
-  <!-- Big Light Bulb / Lamp on top of switch box (center at SWX, 150) -->
-  <g id="lamp_fixture">
-    <!-- Brass / metallic socket -->
-    <rect x="{SWX - 8}" y="{SW_BOX_Y - 36}" width="16" height="14" rx="2" fill="#c4932f" stroke="#7a550d" stroke-width="1"/>
-    <line x1="{SWX - 8}" y1="{SW_BOX_Y - 32}" x2="{SWX + 8}" y2="{SW_BOX_Y - 32}" stroke="#523908" stroke-width="1.2"/>
-    <line x1="{SWX - 8}" y1="{SW_BOX_Y - 27}" x2="{SWX + 8}" y2="{SW_BOX_Y - 27}" stroke="#523908" stroke-width="1.2"/>
-
-    <!-- Unlit / Dark bulb glass -->
-    <circle cx="{SWX}" cy="{SW_BOX_Y - 60}" r="18" fill="#141a29" stroke="#3d4966" stroke-width="1.5" opacity="0.85"/>
-    <!-- Filament coils (visible inside) -->
-    <path d="M{SWX - 4},{SW_BOX_Y - 40} L{SWX - 4},{SW_BOX_Y - 55} L{SWX},{SW_BOX_Y - 64} L{SWX + 4},{SW_BOX_Y - 55} L{SWX + 4},{SW_BOX_Y - 40}" fill="none" stroke="#684a1a" stroke-width="1.2"/>
-
-    <!-- Lit Glow & Lamp Bulb (t=9.0s onwards) -->
-    <g id="lamp_lit">
-      <!-- Radiant Light Rays -->
-      <g stroke="#ffd952" stroke-width="2" stroke-linecap="round" opacity="0.75">
-        <line x1="{SWX}" y1="{SW_BOX_Y - 84}" x2="{SWX}" y2="{SW_BOX_Y - 96}"/>
-        <line x1="{SWX + 18}" y1="{SW_BOX_Y - 77}" x2="{SWX + 27}" y2="{SW_BOX_Y - 86}"/>
-        <line x1="{SWX + 24}" y1="{SW_BOX_Y - 60}" x2="{SWX + 36}" y2="{SW_BOX_Y - 60}"/>
-        <line x1="{SWX + 18}" y1="{SW_BOX_Y - 43}" x2="{SWX + 27}" y2="{SW_BOX_Y - 34}"/>
-        <line x1="{SWX - 18}" y1="{SW_BOX_Y - 77}" x2="{SWX - 27}" y2="{SW_BOX_Y - 86}"/>
-        <line x1="{SWX - 24}" y1="{SW_BOX_Y - 60}" x2="{SWX - 36}" y2="{SW_BOX_Y - 60}"/>
-        <line x1="{SWX - 18}" y1="{SW_BOX_Y - 43}" x2="{SWX - 27}" y2="{SW_BOX_Y - 34}"/>
-      </g>
-      <!-- Brilliant Glowing Core -->
-      <circle cx="{SWX}" cy="{SW_BOX_Y - 60}" r="18" fill="url(#lamp_core)" stroke="#fffdf0" stroke-width="2"/>
-      <circle cx="{SWX - 5}" cy="{SW_BOX_Y - 65}" r="4.5" fill="#ffffff" opacity="0.8"/>
-      <!-- Soft Radial Bloom halo -->
-      <circle id="lamp_glow" cx="{SWX}" cy="{SW_BOX_Y - 60}" r="48" fill="url(#lamp_bloom)" style="transform-origin:{SWX}px {SW_BOX_Y - 60}px"/>
-    </g>
-  </g>
-</g>
-'''
-
-# PCB Floor Ground Plane + Ladder Trace to Perch beside A
-pcb_floor = f'''
-<g id="pcb_ground">
-  <!-- Copper bus bar along floor line -->
-  <line x1="0" y1="{FLOOR}" x2="{W}" y2="{FLOOR}" stroke="#523916" stroke-width="4"/>
-  <line x1="0" y1="{FLOOR}" x2="{W}" y2="{FLOOR}" stroke="url(#gold)" stroke-width="2"/>
-  <!-- Ladder trace rising up to perch beside A (CLX=52, CLY=105) -->
-  <line x1="{CLX}" y1="{FLOOR}" x2="{CLX}" y2="{CLY}" stroke="url(#gold)" stroke-width="2.5"/>
-  <line x1="{CLX - 10}" y1="{CLY + 30}" x2="{CLX + 10}" y2="{CLY + 30}" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="{CLX - 10}" y1="{CLY + 65}" x2="{CLX + 10}" y2="{CLY + 65}" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="{CLX - 10}" y1="{CLY + 100}" x2="{CLX + 10}" y2="{CLY + 100}" stroke="url(#gold)" stroke-width="1.8"/>
-  <line x1="{CLX - 10}" y1="{CLY + 135}" x2="{CLX + 10}" y2="{CLY + 135}" stroke="url(#gold)" stroke-width="1.8"/>
-  <!-- Perch step platform beside A shoulder -->
-  <rect x="{CLX - 16}" y="{CLY}" width="32" height="3.5" rx="1.5" fill="url(#gold)" stroke="{EDGE}" stroke-width="0.8"/>
-  <circle cx="{CLX - 10}" cy="{CLY + 1.8}" r="1.5" fill="{HILITE}"/>
-  <circle cx="{CLX + 10}" cy="{CLY + 1.8}" r="1.5" fill="{HILITE}"/>
-</g>
-'''
-
-# Starburst element for bonk impact
-bonk_star_markup = f'''
 <!-- Dramatic Bonk Impact Flash Starburst on B's head -->
 <g id="bonk_star" filter="url(#glow)">
-  <path d="{STAR}" fill="#ffffff" transform="scale(2.4)"/>
-  <path d="{STAR}" fill="#ffd426" transform="scale(1.6) rotate(22)"/>
+  <path d="{STAR}" fill="#ffffff" transform="scale(2.2)"/>
+  <path d="{STAR}" fill="#ffd426" transform="scale(1.5) rotate(22)"/>
   <circle cx="0" cy="0" r="7" fill="#fff"/>
 </g>
+{switch_apparatus}
 '''
 
-# Minion A Markup: Stuart (tall, 1 goggle, parting hair, holds wrench)
-minion_a_markup = f'''
-<g class="minion_a">
-  <g class="minion_a_inner" style="transform-origin: 0px 0px">
-    <!-- Shadow under feet -->
-    <ellipse cx="0" cy="0" rx="22" ry="4.5" fill="#000000" opacity="0.65"/>
-
-    <!-- Black Shoes -->
-    <path d="M-13,-2 C-13,-7 -20,-7 -20,-2 C-20,1 -12,1 -13,-2 Z" fill="#11151c"/>
-    <path d="M13,-2 C13,-7 20,-7 20,-2 C20,1 12,1 13,-2 Z" fill="#11151c"/>
-
-    <!-- Left Arm & Heavy Wrench (swings left at B) -->
-    <g class="m_a_arm_l" style="transform-origin: -21px -50px">
-      <!-- Arm -->
-      <path d="M-21,-50 Q-32,-42 -30,-28" stroke="#f5c227" stroke-width="8" stroke-linecap="round" fill="none"/>
-      <!-- Black Glove -->
-      <circle cx="-30" cy="-27" r="5.5" fill="#11151c"/>
-      <!-- Heavy Industrial Wrench -->
-      <g transform="translate(-30,-27)">
-        <rect x="-3" y="-2" width="6" height="30" rx="1.5" fill="url(#silver_rim)" stroke="#333" stroke-width="0.8"/>
-        <!-- Wrench Head -->
-        <path d="M-9,26 L9,26 L9,38 L3,38 L3,31 L-3,31 L-3,38 L-9,38 Z" fill="url(#silver_rim)" stroke="#333" stroke-width="0.8"/>
-      </g>
-    </g>
-
-    <!-- Right Arm (pulls switch lever) -->
-    <g class="m_a_arm_r" style="transform-origin: 21px -50px">
-      <!-- Arm -->
-      <path d="M21,-50 Q32,-42 30,-28" stroke="#f5c227" stroke-width="8" stroke-linecap="round" fill="none"/>
-      <!-- Black Glove -->
-      <circle cx="30" cy="-27" r="5.5" fill="#11151c"/>
-    </g>
-
-    <!-- Capsule Yellow Body (Stuart: height=84, width=44) -->
-    <rect x="-22" y="-76" width="44" height="66" rx="22" fill="url(#minion_body_a)"/>
-
-    <!-- Blue Denim Overalls -->
-    <path d="M-22,-28 Q0,-22 22,-28 L22,-8 C22,0 12,2 0,2 C-12,2 -22,0 -22,-8 Z" fill="url(#overall_blue)"/>
-    <!-- Bib front -->
-    <rect x="-14" y="-40" width="28" height="18" rx="2" fill="url(#overall_blue)"/>
-    <!-- Shoulder Straps with Silver Buttons -->
-    <path d="M-20,-48 L-13,-36" stroke="#244d85" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="-13" cy="-36" r="1.8" fill="#ced8e6"/>
-    <circle cx="-13" cy="-36" r="0.8" fill="#111"/>
-    <path d="M20,-48 L13,-36" stroke="#244d85" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="13" cy="-36" r="1.8" fill="#ced8e6"/>
-    <circle cx="13" cy="-36" r="0.8" fill="#111"/>
-    <!-- Center Pocket with Gru Emblem -->
-    <path d="M-7,-30 H7 V-20 Q7,-17 0,-17 Q-7,-17 -7,-20 Z" fill="#1a3d6e" stroke="#142e54" stroke-width="0.8"/>
-    <circle cx="0" cy="-24" r="3.2" fill="#11151c"/>
-    <polygon points="0,-25.5 1.8,-23 -1.8,-23" fill="#ced8e6"/>
-
-    <!-- Goggle Strap -->
-    <rect x="-22.5" y="-64" width="45" height="7.5" fill="#11151c" rx="1.5"/>
-
-    <!-- Single Big Goggle (Stuart) -->
-    <g transform="translate(0, -60)">
-      <circle cx="0" cy="0" r="15.5" fill="url(#silver_rim)" stroke="#384353" stroke-width="1"/>
-      <circle cx="0" cy="0" r="12" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="10.5" fill="#f8f9fa"/>
-      <!-- Pupil with animation -->
-      <g class="m_a_pupil">
-        <!-- Brown Iris -->
-        <circle cx="0" cy="0" r="5.2" fill="#6d411b"/>
-        <!-- Pupil -->
-        <circle cx="0" cy="0" r="2.8" fill="#000000"/>
-        <!-- Catchlight shine -->
-        <circle cx="1.5" cy="-1.5" r="1.4" fill="#ffffff"/>
-      </g>
-      <!-- Glass reflection highlight -->
-      <path d="M-7,-7 A10,10 0 0,1 7,-7" stroke="#ffffff" stroke-width="1.2" fill="none" opacity="0.6"/>
-    </g>
-
-    <!-- Parted Strands of Hair -->
-    <path d="M-6,-76 Q-4,-83 -8,-86" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M-2,-76 Q0,-84 -3,-88" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M2,-76 Q0,-84 3,-88" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M6,-76 Q4,-83 8,-86" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-
-    <!-- Smug / Cheerful Mouth -->
-    <path d="M-8,-44 Q0,-38 8,-44" stroke="#4a3000" stroke-width="2" stroke-linecap="round" fill="none"/>
-  </g>
+# PCB Floor Ground Plane: elegant metallic tracks and dots along the floor line
+pcb_floor = f'''
+<g id="pcb_ground">
+  <!-- Ladder trace rising up to perch beside A (CLX=52, CLY=105) -->
+  <line x1="{CLX}" y1="{FLOOR}" x2="{CLX}" y2="{CLY}" stroke="url(#gold)" stroke-width="2.5"/>
+  <line x1="{CLX - 10}" y1="{CLY + 35}" x2="{CLX + 10}" y2="{CLY + 35}" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="{CLX - 10}" y1="{CLY + 70}" x2="{CLX + 10}" y2="{CLY + 70}" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="{CLX - 10}" y1="{CLY + 105}" x2="{CLX + 10}" y2="{CLY + 105}" stroke="url(#gold)" stroke-width="1.8"/>
+  <line x1="{CLX - 10}" y1="{CLY + 140}" x2="{CLX + 10}" y2="{CLY + 140}" stroke="url(#gold)" stroke-width="1.8"/>
+  <!-- Perch step platform beside A shoulder -->
+  <rect x="{CLX - 16}" y="{CLY}" width="32" height="3.5" rx="1.5" fill="url(#gold)" stroke="{EDGE}" stroke-width="0.8"/>
+  <!-- Main ground copper bus -->
+  <line x1="30" y1="{FLOOR}" x2="{W - 30}" y2="{FLOOR}" stroke="{EDGE}" stroke-width="6"/>
+  <line x1="30" y1="{FLOOR}" x2="{W - 30}" y2="{FLOOR}" stroke="url(#gold)" stroke-width="3"/>
+  <line x1="30" y1="{FLOOR - 1}" x2="{W - 30}" y2="{FLOOR - 1}" stroke="{HILITE}" stroke-width="0.8" opacity="0.6"/>
+  <!-- Floor mounting via pads -->
+  ''' + ''.join(f'<circle cx="{vx}" cy="{FLOOR + 18}" r="4" fill="{EDGE}"/><circle cx="{vx}" cy="{FLOOR + 18}" r="2.8" fill="url(#gold)"/><circle cx="{vx}" cy="{FLOOR + 18}" r="1.2" fill="{BG}"/>' for vx in range(80, W - 60, 95)) + f'''
+  <line x1="40" y1="{FLOOR + 18}" x2="{W - 40}" y2="{FLOOR + 18}" stroke="{DOT}" stroke-width="1.5" stroke-dasharray="6 8"/>
 </g>
 '''
 
-# Minion B Markup: Bob (short, 2 goggles with green & brown heterochromia, sprout hair)
-minion_b_markup = f'''
-<g class="minion_b">
-  <g class="minion_b_inner" style="transform-origin: 0px 0px">
-    <!-- Shadow under feet -->
-    <ellipse cx="0" cy="0" rx="20" ry="4" fill="#000000" opacity="0.65"/>
-
-    <!-- Running Legs -->
-    <g class="m_b_l1" style="transform-origin: -8px -6px">
-      <path d="M-8,-4 C-8,-9 -15,-9 -15,-4 C-15,-1 -7,-1 -8,-4 Z" fill="#11151c"/>
-    </g>
-    <g class="m_b_l2" style="transform-origin: 8px -6px">
-      <path d="M8,-4 C8,-9 15,-9 15,-4 C15,-1 7,-1 8,-4 Z" fill="#11151c"/>
-    </g>
-
-    <!-- Left Arm -->
-    <g class="m_b_arm_l" style="transform-origin: -21px -40px">
-      <path d="M-21,-40 Q-30,-32 -26,-18" stroke="#f5c227" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <circle cx="-26" cy="-17" r="5" fill="#11151c"/>
-    </g>
-
-    <!-- Right Arm -->
-    <g class="m_b_arm_r" style="transform-origin: 21px -40px">
-      <path d="M21,-40 Q30,-32 26,-18" stroke="#f5c227" stroke-width="7" stroke-linecap="round" fill="none"/>
-      <circle cx="26" cy="-17" r="5" fill="#11151c"/>
-    </g>
-
-    <!-- Capsule Yellow Body (Bob: height=68, width=44) -->
-    <rect x="-22" y="-64" width="44" height="56" rx="22" fill="url(#minion_body_b)"/>
-
-    <!-- Blue Denim Overalls -->
-    <path d="M-22,-24 Q0,-18 22,-24 L22,-6 C22,0 12,2 0,2 C-12,2 -22,0 -22,-6 Z" fill="url(#overall_blue)"/>
-    <!-- Bib front -->
-    <rect x="-13" y="-34" width="26" height="15" rx="2" fill="url(#overall_blue)"/>
-    <!-- Straps -->
-    <path d="M-19,-40 L-12,-30" stroke="#244d85" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="-12" cy="-30" r="1.6" fill="#ced8e6"/>
-    <path d="M19,-40 L12,-30" stroke="#244d85" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="12" cy="-30" r="1.6" fill="#ced8e6"/>
-    <!-- Front Pocket -->
-    <path d="M-6,-24 H6 V-16 Q6,-13 0,-13 Q-6,-13 -6,-16 Z" fill="#1a3d6e" stroke="#142e54" stroke-width="0.8"/>
-    <circle cx="0" cy="-19" r="2.6" fill="#11151c"/>
-
-    <!-- Goggle Strap -->
-    <rect x="-22.5" y="-55" width="45" height="7" fill="#11151c" rx="1.5"/>
-
-    <!-- Dual Goggles (Bob: Heterochromia - Green Left, Brown Right) -->
-    <!-- Left Eye (Green iris) -->
-    <g transform="translate(-10, -51)">
-      <circle cx="0" cy="0" r="11" fill="url(#silver_rim)" stroke="#384353" stroke-width="0.8"/>
-      <circle cx="0" cy="0" r="8.5" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="7.5" fill="#f8f9fa"/>
-      <g class="m_b_pupil">
-        <circle cx="0" cy="0" r="3.8" fill="#387a32"/>
-        <circle cx="0" cy="0" r="2" fill="#000000"/>
-        <circle cx="1" cy="-1" r="1" fill="#ffffff"/>
-      </g>
-    </g>
-    <!-- Right Eye (Brown iris) -->
-    <g transform="translate(10, -51)">
-      <circle cx="0" cy="0" r="11" fill="url(#silver_rim)" stroke="#384353" stroke-width="0.8"/>
-      <circle cx="0" cy="0" r="8.5" fill="#1a222d"/>
-      <circle cx="0" cy="0" r="7.5" fill="#f8f9fa"/>
-      <g class="m_b_pupil">
-        <circle cx="0" cy="0" r="3.8" fill="#6d411b"/>
-        <circle cx="0" cy="0" r="2" fill="#000000"/>
-        <circle cx="1" cy="-1" r="1" fill="#ffffff"/>
-      </g>
-    </g>
-
-    <!-- Sprout Hair Strands -->
-    <path d="M-2,-64 Q-3,-70 -6,-72" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M0,-64 Q0,-71 0,-74" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    <path d="M2,-64 Q3,-70 6,-72" stroke="#1a1c20" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-
-    <!-- Mouth -->
-    <path d="M-6,-37 Q0,-32 6,-37" stroke="#4a3000" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-
-    <!-- Large Bump / Knot on head (bonk reaction) -->
-    <g class="m_b_bump" style="transform-origin: 0px -64px">
-      <ellipse cx="-2" cy="-67" rx="8" ry="6" fill="#f05454" stroke="#991b1b" stroke-width="1"/>
-      <path d="M-6,-68 Q-2,-70 2,-68" stroke="#ffe0e0" stroke-width="1" fill="none"/>
-      <!-- Band-aid / cross -->
-      <line x1="-5" y1="-67" x2="1" y2="-67" stroke="#fff" stroke-width="1.2"/>
-      <line x1="-2" y1="-70" x2="-2" y2="-64" stroke="#fff" stroke-width="1.2"/>
-    </g>
-
-    <!-- Orbiting Comic Stars (bonk reaction) -->
-    <g class="m_b_stars" style="transform-origin: 0px -74px">
-      <path d="{STAR}" fill="#ffd426" stroke="#fff" stroke-width="0.8" transform="translate(-18,-74) scale(0.65)"/>
-      <path d="{STAR}" fill="#ffd426" stroke="#fff" stroke-width="0.8" transform="translate(18,-74) scale(0.65)"/>
-      <path d="{STAR}" fill="#ffec6e" stroke="#fff" stroke-width="0.8" transform="translate(0,-86) scale(0.75)"/>
-    </g>
+minions_markup = f'''
+{pcb_floor}
+<g mask="url(#botmask)">
+  <g transform="translate(0,{2 * FLOOR + 4}) scale(1,-1)" opacity=".3" filter="url(#soft)">
+    {minion_a_svg}
+    {minion_b_svg}
   </g>
 </g>
+{minion_a_svg}
+{minion_b_svg}
 '''
 
-svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="100%" height="100%">
+svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Atilade Oke in gold traces: two Minions fix the crooked crown on the first A, flip the switch, and light the name in gold">
 <defs>
-  <radialGradient id="vig" cx="50%" cy="45%" r="65%">
-    <stop offset="0%" stop-color="#0b1021" stop-opacity="0"/>
-    <stop offset="60%" stop-color="#05070f" stop-opacity=".55"/>
-    <stop offset="100%" stop-color="#020308" stop-opacity=".95"/>
-  </radialGradient>
-  <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-    <circle cx="12" cy="12" r="1.1" fill="{DOT}"/>
-  </pattern>
-  <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="{HILITE}"/>
-    <stop offset="35%" stop-color="{GOLD}"/>
-    <stop offset="100%" stop-color="{EDGE}"/>
+  <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="{DOT}"/></pattern>
+  <linearGradient id="gold" x1="0" y1="0" x2="46" y2="92" gradientUnits="userSpaceOnUse" spreadMethod="reflect">
+    <stop offset="0" stop-color="#f6cf75"/><stop offset=".5" stop-color="{GOLD}"/><stop offset="1" stop-color="#b47d22"/>
   </linearGradient>
+  <linearGradient id="minion_body_a" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#fff176"/><stop offset="35%" stop-color="#ffd426"/><stop offset="100%" stop-color="#e0a400"/>
+  </linearGradient>
+  <linearGradient id="minion_body_b" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#fff176"/><stop offset="35%" stop-color="#ffd426"/><stop offset="100%" stop-color="#e0a400"/>
+  </linearGradient>
+  <linearGradient id="denim_grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3b6ca8"/><stop offset="60%" stop-color="#28568e"/><stop offset="100%" stop-color="#1b3d68"/>
+  </linearGradient>
+  <linearGradient id="silver_rim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#cbd3e0"/><stop offset="70%" stop-color="#798294"/><stop offset="100%" stop-color="#4a5263"/>
+  </linearGradient>
+  <linearGradient id="red_knob" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ff6b6b"/><stop offset="40%" stop-color="#e02424"/><stop offset="100%" stop-color="#800f0f"/>
+  </linearGradient>
+  <radialGradient id="lamp_core" cx="40%" cy="40%" r="65%">
+    <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#fff3a1"/><stop offset="70%" stop-color="#ffb71b"/><stop offset="100%" stop-color="#e08400"/>
+  </radialGradient>
   <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-    <stop offset="45%" stop-color="#ffffff" stop-opacity=".15"/>
-    <stop offset="50%" stop-color="#ffffff" stop-opacity=".85"/>
-    <stop offset="55%" stop-color="#ffffff" stop-opacity=".15"/>
-    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
-
-  <!-- Minion Gradients -->
-  <linearGradient id="minion_body_a" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ffe24a"/>
-    <stop offset="50%" stop-color="#f5c227"/>
-    <stop offset="100%" stop-color="#cc9b14"/>
-  </linearGradient>
-  <linearGradient id="minion_body_b" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ffe459"/>
-    <stop offset="50%" stop-color="#f5c227"/>
-    <stop offset="100%" stop-color="#cc9b14"/>
-  </linearGradient>
-  <linearGradient id="overall_blue" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#3b72bd"/>
-    <stop offset="60%" stop-color="#244d85"/>
-    <stop offset="100%" stop-color="#17355e"/>
-  </linearGradient>
-  <linearGradient id="silver_rim" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#ffffff"/>
-    <stop offset="30%" stop-color="#ced4da"/>
-    <stop offset="70%" stop-color="#868e96"/>
-    <stop offset="100%" stop-color="#495057"/>
-  </linearGradient>
-  <radialGradient id="red_knob" cx="35%" cy="35%" r="65%">
-    <stop offset="0%" stop-color="#ff6b6b"/>
-    <stop offset="40%" stop-color="#e03131"/>
-    <stop offset="100%" stop-color="#731111"/>
+  <radialGradient id="vig" cx="50%" cy="40%" r="75%">
+    <stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/>
   </radialGradient>
-  <radialGradient id="lamp_core" cx="40%" cy="40%" r="60%">
-    <stop offset="0%" stop-color="#ffffff"/>
-    <stop offset="30%" stop-color="#fff8d6"/>
-    <stop offset="70%" stop-color="#ffd43b"/>
-    <stop offset="100%" stop-color="#f59f00"/>
-  </radialGradient>
-  <radialGradient id="lamp_bloom" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffd43b" stop-opacity="0.95"/>
-    <stop offset="35%" stop-color="#fcc419" stop-opacity="0.45"/>
-    <stop offset="70%" stop-color="#fab005" stop-opacity="0.15"/>
-    <stop offset="100%" stop-color="#fab005" stop-opacity="0"/>
-  </radialGradient>
-
-  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-    <feGaussianBlur stdDeviation="3.5" result="b"/>
-    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  <filter id="glow" x="-15%" y="-40%" width="130%" height="180%">
+    <feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
   </filter>
-  <filter id="big" x="-40%" y="-40%" width="180%" height="180%">
-    <feGaussianBlur stdDeviation="16"/>
-  </filter>
-  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-    <feGaussianBlur stdDeviation="2.5"/>
-  </filter>
-  <linearGradient id="reflfade" x1="0" y1="{BASE + 6}" x2="0" y2="{FLOOR}" gradientUnits="userSpaceOnUse">
-    <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
-    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  <filter id="big" x="-40%" y="-80%" width="180%" height="260%"><feGaussianBlur stdDeviation="24"/></filter>
+  <filter id="soft" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  <linearGradient id="reflfade" x1="0" y1="{BASE}" x2="0" y2="{BASE + 100}" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#fff" stop-opacity=".65"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
-  <mask id="reflmask" maskUnits="userSpaceOnUse" x="0" y="{BASE + 6}" width="{W}" height="{FLOOR - BASE}">
-    <rect x="0" y="{BASE + 6}" width="{W}" height="{FLOOR - BASE}" fill="url(#reflfade)"/>
+  <mask id="reflmask" maskUnits="userSpaceOnUse" x="0" y="{BASE}" width="{W}" height="{H - BASE}">
+    <rect x="0" y="{BASE + 6}" width="{W}" height="{H - BASE}" fill="url(#reflfade)"/>
   </mask>
-  <linearGradient id="botfade" x1="0" y1="{FLOOR}" x2="0" y2="{H - 4}" gradientUnits="userSpaceOnUse">
+  <linearGradient id="botfade" x1="0" y1="{FLOOR}" x2="0" y2="{FLOOR + 38}" gradientUnits="userSpaceOnUse">
     <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </linearGradient>
   <mask id="botmask" maskUnits="userSpaceOnUse" x="0" y="{FLOOR}" width="{W}" height="{H - FLOOR}">
-    <rect x="0" y="{FLOOR + 2}" width="{W}" height="{H - FLOOR}" fill="url(#botfade)"/></mask>
-  <mask id="namemask" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}">{''.join(mask_paths)}</mask>
+    <rect x="0" y="{FLOOR + 2}" width="{W}" height="{H - FLOOR}" fill="url(#botfade)"/>
+  </mask>
+  <mask id="namemask" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}">{''.join(mask)}</mask>
 </defs>
 <style>
 text{{font-family:{MONO}}}
@@ -885,16 +820,12 @@ text{{font-family:{MONO}}}
 <rect width="{W}" height="{H}" rx="18" fill="url(#dots)"/>
 <rect width="{W}" height="{H}" rx="18" fill="url(#vig)"/>
 <ellipse id="nameglow" cx="{NX + name_w / 2}" cy="{NY + 3 * U}" rx="{name_w / 2 + 20}" ry="{4 * U}" fill="{GOLD}" filter="url(#big)" style="opacity:0"/>
-<g id="reflg" mask="url(#reflmask)"><g transform="translate(0,{2 * BASE + 8}) scale(1,-1)" opacity=".5" filter="url(#soft)">{''.join(refl_paths)}</g></g>
-<g id="lit" filter="url(#glow)">{''.join(mid_paths)}</g>
+<g id="reflg" mask="url(#reflmask)"><g transform="translate(0,{2 * BASE + 8}) scale(1,-1)" opacity=".5" filter="url(#soft)">{''.join(refl)}</g></g>
+<g id="lit" filter="url(#glow)">{''.join(mid)}</g>
 <g mask="url(#namemask)"><rect id="sheen" x="0" y="{NY - 10}" width="200" height="{6 * U + 20}" fill="url(#shine)" transform="translate(-260 0)"/></g>
 <g id="padsg">{''.join(pads)}</g>
-{pcb_floor}
 {crown}
-{switch_apparatus}
-{bonk_star_markup}
-{minion_a_markup}
-{minion_b_markup}
+{minions_markup}
 </svg>'''
 
 target = sys.argv[1] if len(sys.argv) > 1 else 'assets/traces.svg'
